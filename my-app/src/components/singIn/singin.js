@@ -1,30 +1,24 @@
-import Header from "../header/Header";
-import { Grid } from "../../Styles/GridSystem";
 import styled from 'styled-components'
-import WordInfo from "../word-info/WordInfo";
-import OptionsTabs from "./../userOptions/OptionsTab";
-
+import { useState } from "react";
+import UserInput from "./UserInput";
+import PasswordInput from "./PasswordInput";
 
 export default function SingIn() {
 
-    const WordInfoBox = styled.div`
-    grid-column: 1/3;
-
-    `
-
-    const OptionsBox = styled.div`
-    grid-column: 3/8;
-
-    `
 
 
     const PageBox = styled.div`
 padding-top: 32px;
 
 `
+
+    const [user, setUser] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <PageBox>
-           Sing in 
+            <UserInput user={user} setUser={setUser} />
+            <PasswordInput setPassword={setPassword} />
         </PageBox>
     );
 }
