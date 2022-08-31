@@ -3,14 +3,14 @@ import { useState } from "react";
 import UserInput from "./UserInput";
 import PasswordInput from "./PasswordInput";
 
+const PageBox = styled.div`
+padding-top: 32px;
+
+`
 export default function SingIn() {
 
 
 
-    const PageBox = styled.div`
-padding-top: 32px;
-
-`
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');

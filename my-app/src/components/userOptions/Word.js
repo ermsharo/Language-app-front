@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { AiFillStar ,AiOutlineStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 
 const GenerateWordColor = (word) => {
@@ -35,13 +35,15 @@ text-align: center;
 
 `
 
-export default function History() {
+export default function Word({ item, index }) {
 
 
 
 
     return (
-   <>aaa</>
+        <WordBox style={{ backgroundColor: GenerateWordColor(item) }}>
+            {item} <AiFillStar /> <AiOutlineStar />
+        </WordBox>
     );
 }
 

@@ -48,6 +48,9 @@ export default function UserOptions() {
     setValue(newValue);
   };
 
+  const [page, setPage] = useState(0);
+  const [numberOfPages, setNumberOfPages] = useState(0);
+
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -58,13 +61,13 @@ export default function UserOptions() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <WordList />
+        <WordList page={page} setPage={setPage} numberOfPages={numberOfPages} setNumberOfPages={setNumberOfPages} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <History />
+        <History page={page} setPage={setPage} numberOfPages={numberOfPages} setNumberOfPages={setNumberOfPages} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Favorites />
+        <Favorites page={page} setPage={setPage} numberOfPages={numberOfPages} setNumberOfPages={setNumberOfPages} />
       </TabPanel>
     </Box>
   );
