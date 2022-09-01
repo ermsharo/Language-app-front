@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import React, { useState } from 'react';
-import History from './History'
-import Favorites from './Favorites';
-import WordList from './WordList';
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import React, { useState } from "react";
+import History from "./History";
+import Favorites from "./Favorites";
+import WordList from "./WordList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -37,7 +37,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -52,22 +52,41 @@ export default function UserOptions() {
   const [numberOfPages, setNumberOfPages] = useState(0);
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
           <Tab label="Word List" {...a11yProps(0)} />
           <Tab label="History" {...a11yProps(1)} />
           <Tab label="Favorites" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <WordList page={page} setPage={setPage} numberOfPages={numberOfPages} setNumberOfPages={setNumberOfPages} />
+        <WordList
+          page={page}
+          setPage={setPage}
+          numberOfPages={numberOfPages}
+          setNumberOfPages={setNumberOfPages}
+        />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <History page={page} setPage={setPage} numberOfPages={numberOfPages} setNumberOfPages={setNumberOfPages} />
+        <History
+          page={page}
+          setPage={setPage}
+          numberOfPages={numberOfPages}
+          setNumberOfPages={setNumberOfPages}
+        />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Favorites page={page} setPage={setPage} numberOfPages={numberOfPages} setNumberOfPages={setNumberOfPages} />
+        <Favorites
+          page={page}
+          setPage={setPage}
+          numberOfPages={numberOfPages}
+          setNumberOfPages={setNumberOfPages}
+        />
       </TabPanel>
     </Box>
   );

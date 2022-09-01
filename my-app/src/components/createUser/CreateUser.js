@@ -1,62 +1,52 @@
-
+import styled from "styled-components";
+import TextField from "@mui/material/TextField";
 import { Grid } from "../../Styles/GridSystem";
-import styled from 'styled-components'
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import {useState} from "react";
+import Button from '@mui/material/Button';
+import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+
+const BoardBox = styled.div`
+  padding-top: 32px;
+  width: 100%;
+  border: 2px solid red;
+`;
+
+const LoginBox = styled.div`
+  padding-top: 32px;
+  grid-column: 2/6;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 16px;
+`;
+
+const ErrorFeedBack = styled.div`
+  padding-top: 32px;
+  grid-column: 2/6;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 16px;
+`;
 
 export default function CreateUser() {
-
-  const CreateUserBox = styled.div`
-    grid-column: 1/8;
-
-
-    `
-  const PageBox = styled.div`
-padding-top: 32px;
-
-`
-
-const [user, setUser] = useState("");
-const [password, setPassword] = useState("");
-
-const onUserChange = (e) => setUser(e.target.value);
-
   return (
-    <PageBox> <Grid><CreateUserBox>
-      <Box
-        component="form"
-        sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          <TextField
-            error
-            id="outlined-error"
-            label="User"
-            value={user}
-            onChange={onUserChange}
-            
-          />
-    <TextField
-            error
-            id="outlined-error"
-            label="Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-        </div>
+    <>
+      <BoardBox>
+        <Grid>
+          <LoginBox>
+            <TextField fullWidth id="outlined-name" label="User" />
+            <TextField fullWidth id="outlined-name" label="Email" />
+            <TextField fullWidth id="outlined-name" label="Password" />
+            <TextField fullWidth id="outlined-name" label="Password check" />
+
+            <Button fullWidth variant="contained">Create user</Button>
 
 
-      </Box>
 
-    </CreateUserBox></Grid></PageBox>
-
-
+          </LoginBox>
+        </Grid>
+      </BoardBox>
+    </>
   );
 }
-
-
