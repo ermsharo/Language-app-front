@@ -23,8 +23,6 @@ export default function Board() {
 
   return (
     <>
-      {" "}
-      <Header />
       <BoardBox>
         <Grid>
           <WordInfoBox>

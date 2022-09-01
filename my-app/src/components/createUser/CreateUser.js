@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 const BoardBox = styled.div`
   padding-top: 32px;
   width: 100%;
-  border: 2px solid red;
 `;
 
 const LoginBox = styled.div`

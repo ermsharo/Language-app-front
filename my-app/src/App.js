@@ -9,6 +9,7 @@ function App() {
       <header className="App-header"></header>
       <div>
         <BrowserRouter>
+        <Header />
           <Routes>
             <Route path="/" element={<Board />}></Route>
             <Route path="/:tab" element={<Board />}></Route>

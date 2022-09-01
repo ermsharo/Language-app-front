@@ -5,6 +5,7 @@ import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
 import { isLogged, getUserInfo } from "../../Services/getLoginStatus";
 import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const LoginBox = styled.div`
   padding: 4px;
@@ -39,7 +40,7 @@ export default function LoginAccess() {
           <IconButton sx={{ p: 0 }}>
             <Avatar
               alt={getUserInfo().user.toUpperCase()}
-              
+
             />
           </IconButton>
         </Tooltip>
@@ -49,7 +50,7 @@ export default function LoginAccess() {
   return (
     <UserTitle>
       {" "}
-      <Typography onClick={navigate("/login")}>Login</Typography>
+      <Link to="/login/"><Typography color = "white">Login</Typography></Link>
     </UserTitle>
   );
 }

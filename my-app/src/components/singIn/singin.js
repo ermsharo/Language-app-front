@@ -8,13 +8,11 @@ import { Link } from "react-router-dom";
 const BoardBox = styled.div`
   padding-top: 32px;
   width: 100%;
-  border: 2px solid red;
 `;
 
 const LoginBox = styled.div`
   padding-top: 32px;
   grid-column: 2/6;
-  border: 2px solid red;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
