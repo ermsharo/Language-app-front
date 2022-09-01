@@ -1,17 +1,7 @@
 import styled from "styled-components";
 
-
-
-const ErrorFeedBack = styled.div`
-
-`;
+const ErrorFeedBack = styled.div``;
 
 export default function CreateUser() {
-  return (
-    
-      <ErrorFeedBack>
-
-      </ErrorFeedBack>
-    
-  );
+  return <ErrorFeedBack></ErrorFeedBack>;
 }

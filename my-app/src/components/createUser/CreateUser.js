@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import { Grid } from "../../Styles/GridSystem";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -39,10 +39,9 @@ export default function CreateUser() {
             <TextField fullWidth id="outlined-name" label="Password" />
             <TextField fullWidth id="outlined-name" label="Password check" />
 
-            <Button fullWidth variant="contained">Create user</Button>
-
-
-
+            <Button fullWidth variant="contained">
+              Create user
+            </Button>
           </LoginBox>
         </Grid>
       </BoardBox>

@@ -38,10 +38,7 @@ export default function LoginAccess() {
 
         <Tooltip title="Open settings">
           <IconButton sx={{ p: 0 }}>
-            <Avatar
-              alt={getUserInfo().user.toUpperCase()}
-
-            />
+            <Avatar alt={getUserInfo().user.toUpperCase()} />
           </IconButton>
         </Tooltip>
       </LoginBox>
@@ -50,7 +47,9 @@ export default function LoginAccess() {
   return (
     <UserTitle>
       {" "}
-      <Link to="/login/"><Typography color = "white">Login</Typography></Link>
+      <Link to="/login/">
+        <Typography color="white">Login</Typography>
+      </Link>
     </UserTitle>
   );
 }

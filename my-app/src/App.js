@@ -1,25 +1,42 @@
-import Board from "./components/board/board";
-import SingIn from "./components/singIn/singin";
-import CreateUser from "./components/createUser/CreateUser";
-import Header from "./components/header/Header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-function App() {
+import styled from "styled-components";
+import TextField from "@mui/material/TextField";
+import { Grid } from "./Styles/GridSystem";
+import Button from "@mui/material/Button";
+import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+
+const BoardBox = styled.div`
+  padding-top: 32px;
+  width: 100%;
+`;
+
+const LoginBox = styled.div`
+  padding-top: 32px;
+  grid-column: 2/6;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 16px;
+`;
+
+export default function SingIn() {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-      <div>
-        <BrowserRouter>
-        <Header />
-          <Routes>
-            <Route path="/" element={<Board />}></Route>
-            <Route path="/:tab" element={<Board />}></Route>
-            <Route path="/login" element={<SingIn />}></Route>
-            <Route path="/login/create-account" element={<CreateUser />}></Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </div>
+    <>
+      <BoardBox>
+        <Grid>
+          <LoginBox>
+            <TextField fullWidth id="outlined-name" label="user" />
+            <TextField fullWidth id="outlined-name" label="Password" />
+
+            <Button fullWidth variant="contained">
+              Login
+            </Button>
+            <Link to="/login/create-account">
+              <Typography>Create account</Typography>
+            </Link>
+          </LoginBox>
+        </Grid>
+      </BoardBox>
+    </>
   );
 }
-
-export default App;
