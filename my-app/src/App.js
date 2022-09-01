@@ -6,16 +6,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 function App() {
-
-  
   return (
     <div className="App">
       <Helmet>
         <meta charSet="utf-8" />
-        <title></title>
+        <title>Dict app</title>
         <link rel="canonical" href="http://mysite.com/example" />
-        <link href="http://fonts.cdnfonts.com/css/sedgwick-ave" rel="stylesheet" />
-
+        <link
+          href="http://fonts.cdnfonts.com/css/sedgwick-ave"
+          rel="stylesheet"
+        />
+        <link href="http://fonts.cdnfonts.com/css/helmida" rel="stylesheet" />
       </Helmet>
 
       <div>
@@ -25,7 +26,10 @@ function App() {
             <Route path="/" element={<Board />}></Route>
             <Route path="/:tab" element={<Board />}></Route>
             <Route path="/login" element={<SingIn />}></Route>
-            <Route path="/login/create-account" element={<CreateUser />}></Route>
+            <Route
+              path="/login/create-account"
+              element={<CreateUser />}
+            ></Route>
           </Routes>
         </BrowserRouter>
       </div>

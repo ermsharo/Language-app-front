@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Logo from "../logo/logo";
+import React, { useState } from "react";
+
 const BoardBox = styled.div`
   padding-top: 32px;
   width: 100%;
@@ -26,14 +28,47 @@ padding: 16px;
 `;
 
 export default function SingIn() {
+
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+
+  });
+
+  function handleChange(evt) {
+    const value = evt.target.value;
+    setState({
+      ...state,
+      [evt.target.name]: value,
+    });
+
+    console.log(state)
+  }
   return (
     <>
       <BoardBox>
         <LogoBox><Logo color="#00008b" size="6vw" /></LogoBox>
         <Grid>
           <LoginBox>
-            <TextField fullWidth id="outlined-name" label="user" />
-            <TextField fullWidth id="outlined-name" label="Password" />
+            <TextField
+              fullWidth
+              id="outlined-name"
+              label="Email"
+              name="email"
+              value={state.email}
+              onChange={handleChange}
+            />
+            <TextField
+              type="password"
+              fullWidth
+              id="outlined-name"
+              label="Password"
+              name="password"
+              value={state.password}
+              onChange={handleChange}
+            />
+
+
 
             <Button fullWidth variant="contained">
               Login
