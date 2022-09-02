@@ -5,7 +5,10 @@ import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Logo from "../logo/logo";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Feedback from "./../Feedback/FeedBack";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const BoardBox = styled.div`
   padding-top: 32px;
@@ -22,32 +25,73 @@ const LoginBox = styled.div`
 `;
 
 const LogoBox = styled.div`
-display: flex;
-justify-content: center;
-padding: 16px;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
 `;
 
 export default function SingIn() {
 
-  const [state, setState] = useState({
+
+  const [formInputs, setFormInputs] = useState({
     email: "",
     password: "",
-
   });
+
+  const [requestErrorAwnser, setRequestErrorAwnser] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleChange(evt) {
     const value = evt.target.value;
-    setState({
-      ...state,
+    setFormInputs({
+      ...formInputs,
       [evt.target.name]: value,
     });
 
-    console.log(state)
+    console.log(formInputs);
   }
+
+  const saveUserInfo = (id, token, user) => {
+    localStorage.setItem('id', id);
+    localStorage.setItem('user', user);
+    localStorage.setItem('token', token);
+    localStorage.setItem('logged', true);
+
+  }
+
+  const getUserInfo = () => {
+
+  }
+
+
+
+
+  const singIn = async () => {
+    console.log("chamado", formInputs);
+    await axios
+      .post("http://localhost:5000/auth/singin", {
+        formInputs,
+      })
+      .then((response) => {
+        console.log("response data", response.data)
+        //console.log("post");
+        setRequestErrorAwnser(false);
+        saveUserInfo(response.data.id, response.data.token, response.data.user);
+        navigate("/")
+      })
+      .catch((error) => {
+        console.log("error ->", error.response.data)
+        setRequestErrorAwnser(error.response.data);
+      });
+  };
+
   return (
     <>
       <BoardBox>
-        <LogoBox><Logo color="#00008b" size="6vw" /></LogoBox>
+        <LogoBox>
+          <Logo color="#00008b" size="6vw" />
+        </LogoBox>
         <Grid>
           <LoginBox>
             <TextField
@@ -55,7 +99,7 @@ export default function SingIn() {
               id="outlined-name"
               label="Email"
               name="email"
-              value={state.email}
+              value={formInputs.email}
               onChange={handleChange}
             />
             <TextField
@@ -64,13 +108,18 @@ export default function SingIn() {
               id="outlined-name"
               label="Password"
               name="password"
-              value={state.password}
+              value={formInputs.password}
               onChange={handleChange}
             />
+            <Feedback status={requestErrorAwnser} success={false} display={requestErrorAwnser} />
 
-
-
-            <Button fullWidth variant="contained">
+            <Button
+              onClick={() => {
+                singIn();
+              }}
+              fullWidth
+              variant="contained"
+            >
               Login
             </Button>
             <Link to="/login/create-account">

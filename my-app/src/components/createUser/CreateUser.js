@@ -51,8 +51,7 @@ export default function CreateUser() {
     console.log("chamado", formInputs);
     await axios
       .post("http://localhost:5000/auth/singup", {
-        title: "Hello World!",
-        body: "This is a new post."
+        formInputs,
       })
       .then((response) => {
         setRequestAwnser(response.data);
@@ -105,7 +104,7 @@ export default function CreateUser() {
               value={formInputs.passwordCheck}
               onChange={handleChange}
             />
-            <Feedback status="aaa" success={true} display = {true}/>
+            <Feedback status="aaa" success={true} display={true} />
 
             <Button
               onClick={() => {
