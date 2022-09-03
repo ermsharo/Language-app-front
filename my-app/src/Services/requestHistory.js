@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import axios from "axios";
 import { getToken } from "../Services/getLoginStatus";
 
-export const GetWordList = (initialUrl, initialData) => {
+export const GetHistoryList = (initialUrl, initialData) => {
   const [data, setData] = useState(initialData);
   const [url, setUrl] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,7 @@ export const GetWordList = (initialUrl, initialData) => {
         });
 
         setData(result.data);
-        console.log(result.data);
+        console.log("History ->", result.data);
       } catch (error) {
         setIsError(error.response.data);
         console.log("error ->", error.response.data);

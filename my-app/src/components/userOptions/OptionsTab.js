@@ -41,7 +41,7 @@ function a11yProps(index) {
   };
 }
 
-export default function UserOptions() {
+export default function UserOptions({ setSelectedWord }) {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -53,6 +53,13 @@ export default function UserOptions() {
 
   return (
     <Box sx={{ width: "100%" }}>
+      <div
+        onClick={() => {
+          setSelectedWord("hello");
+        }}
+      >
+        Click from hello
+      </div>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -70,6 +77,7 @@ export default function UserOptions() {
           setPage={setPage}
           numberOfPages={numberOfPages}
           setNumberOfPages={setNumberOfPages}
+          setSelectedWord={setSelectedWord}
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -78,6 +86,7 @@ export default function UserOptions() {
           setPage={setPage}
           numberOfPages={numberOfPages}
           setNumberOfPages={setNumberOfPages}
+          setSelectedWord={setSelectedWord}
         />
       </TabPanel>
       <TabPanel value={value} index={2}>
@@ -86,6 +95,7 @@ export default function UserOptions() {
           setPage={setPage}
           numberOfPages={numberOfPages}
           setNumberOfPages={setNumberOfPages}
+          setSelectedWord={setSelectedWord}
         />
       </TabPanel>
     </Box>

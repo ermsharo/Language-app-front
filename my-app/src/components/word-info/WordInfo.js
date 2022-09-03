@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import ReactAudioPlayer from "react-audio-player";
 
-export default function WordInfo() {
+export default function WordInfo({ selectedWord, setSelectedWord }) {
   const WordDisplay = styled.div`
     width: 100%;
     background-color: lightblue;
@@ -58,7 +58,7 @@ export default function WordInfo() {
   return (
     <div>
       <WordDisplay>
-        <WordText>hello</WordText>
+        <WordText>{selectedWord}</WordText>
         <FoneticText>he . lo</FoneticText>
       </WordDisplay>
       <AudioDisplay>

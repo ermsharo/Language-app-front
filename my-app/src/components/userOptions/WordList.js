@@ -2,12 +2,16 @@ import styled from "styled-components";
 import Word from "./Word";
 import { GetWordList } from "../../Services/requestWords";
 import InfiniteScroll from "react-infinite-scroll-component";
-export default function WordList() {
-  const WordListGrid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 6px;
-  `;
+import { useNavigate } from "react-router-dom";
+
+const WordListGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 6px;
+`;
+
+export default function WordList({ setSelectedWord }) {
+  const navigate = useNavigate();
 
   const fetchMoreData = () => {};
 
@@ -16,7 +20,11 @@ export default function WordList() {
     { hits: [] }
   );
 
-  if (isError) return <div>Something went wrong ...</div>;
+  if (isError) {
+    console.log("is error from comp ->", isError);
+    if (isError.auth === false) navigate("/login");
+    return <div>Something went wrong ...</div>;
+  }
   if (isLoading) return <div>Loading ...</div>;
   if (data)
     return (
@@ -29,9 +37,13 @@ export default function WordList() {
         ></InfiniteScroll>
 
         <WordListGrid>
-          {data.results != undefined &&
+          {data.results !== undefined &&
             data.results.map((item, index) => (
-              <Word index={index} item={item} />
+              <Word
+                index={index}
+                item={item}
+                setSelectedWord={setSelectedWord}
+              />
             ))}
         </WordListGrid>
       </div>

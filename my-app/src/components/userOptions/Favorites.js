@@ -1,19 +1,8 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-
-export default function Favorites() {
-
-
-
-    const BoardBox = styled.div`
-padding-top: 32px;
-
-`
-    return (
-        <>
-          
-        </>
-    );
+export default function Favorites({ setSelectedWord }) {
+  const BoardBox = styled.div`
+    padding-top: 32px;
+  `;
+  return <></>;
 }
-
-

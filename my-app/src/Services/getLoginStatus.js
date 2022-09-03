@@ -1,10 +1,14 @@
 export const isLogged = () => {
-  //Verify  if user is logged
-  return false;
+  return localStorage.getItem("logged");
 };
 
 export const getUserInfo = () => {
   return {
-    user: "generic user",
+    id: localStorage.getItem("id"),
+    user: localStorage.getItem("user"),
   };
+};
+
+export const getToken = () => {
+  return localStorage.getItem("token");
 };

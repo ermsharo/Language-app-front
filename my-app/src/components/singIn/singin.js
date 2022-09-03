@@ -8,7 +8,7 @@ import Logo from "../logo/logo";
 import React, { useState, useEffect } from "react";
 import Feedback from "./../Feedback/FeedBack";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const BoardBox = styled.div`
   padding-top: 32px;
@@ -31,8 +31,6 @@ const LogoBox = styled.div`
 `;
 
 export default function SingIn() {
-
-
   const [formInputs, setFormInputs] = useState({
     email: "",
     password: "",
@@ -53,19 +51,11 @@ export default function SingIn() {
   }
 
   const saveUserInfo = (id, token, user) => {
-    localStorage.setItem('id', id);
-    localStorage.setItem('user', user);
-    localStorage.setItem('token', token);
-    localStorage.setItem('logged', true);
-
-  }
-
-  const getUserInfo = () => {
-
-  }
-
-
-
+    localStorage.setItem("id", id);
+    localStorage.setItem("user", user);
+    localStorage.setItem("token", token);
+    localStorage.setItem("logged", true);
+  };
 
   const singIn = async () => {
     console.log("chamado", formInputs);
@@ -74,14 +64,14 @@ export default function SingIn() {
         formInputs,
       })
       .then((response) => {
-        console.log("response data", response.data)
+        console.log("response data", response.data);
         //console.log("post");
         setRequestErrorAwnser(false);
-        saveUserInfo(response.data.id, response.data.token, response.data.user);
-        navigate("/")
+        saveUserInfo(response.data.id, response.data.token, response.data.name);
+        navigate("/");
       })
       .catch((error) => {
-        console.log("error ->", error.response.data)
+        console.log("error ->", error.response.data);
         setRequestErrorAwnser(error.response.data);
       });
   };
@@ -111,7 +101,11 @@ export default function SingIn() {
               value={formInputs.password}
               onChange={handleChange}
             />
-            <Feedback status={requestErrorAwnser} success={false} display={requestErrorAwnser} />
+            <Feedback
+              status={requestErrorAwnser}
+              success={false}
+              display={requestErrorAwnser}
+            />
 
             <Button
               onClick={() => {
