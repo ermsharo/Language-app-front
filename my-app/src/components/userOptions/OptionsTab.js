@@ -53,13 +53,6 @@ export default function UserOptions({ setSelectedWord }) {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <div
-        onClick={() => {
-          setSelectedWord("hello");
-        }}
-      >
-        Click from hello
-      </div>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}

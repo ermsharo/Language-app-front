@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 const WordListGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 6px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
 `;
 
 export default function WordList({ setSelectedWord }) {
@@ -26,6 +26,7 @@ export default function WordList({ setSelectedWord }) {
     return <div>Something went wrong ...</div>;
   }
   if (isLoading) return <div>Loading ...</div>;
+
   if (data)
     return (
       <div>

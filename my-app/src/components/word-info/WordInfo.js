@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import React, { Fragment, useState, useEffect } from "react";
-import Stack from "@mui/material/Stack";
+import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
 import ReactAudioPlayer from "react-audio-player";
 import { GetWordInfo } from "./../../Services/requestWordInfo";
+import Feedback from "./../Feedback/FeedBack";
 
 const WordDisplay = styled.div`
   width: 100%;
@@ -65,24 +65,29 @@ export default function WordInfo({ selectedWord, setSelectedWord }) {
   }, [selectedWord]);
 
   if (isError) {
-    // console.log("is error from comp ->", isError);
-    // if (isError.auth === false) navigate("/login");
-    // return <div>Something went wrong ...</div>;
+    return (
+      <>
+        <Feedback
+          status="word dont find"
+          success={false}
+          display="word dont find"
+        />
+      </>
+    );
   }
   if (isLoading) return <div>Loading ...</div>;
+
   if (data) {
-    console.log("Data ->", data[0]);
     return (
       <div>
-        {selectedWord}
         <WordDisplay>
-          <WordText>{data[0].word}</WordText>
-          <FoneticText>{data[0].phonetics[1].text}</FoneticText>
+          <WordText>{data[0]?.word}</WordText>
+          <FoneticText>{data[0]?.phonetics[1]?.text}</FoneticText>
         </WordDisplay>
         <AudioDisplay>
           {" "}
           <ReactAudioPlayer
-            src={data[0].phonetics[0].audio}
+            src={data[0]?.phonetics[0]?.audio}
             autoPlay
             controls
             style={{ width: "100%" }}

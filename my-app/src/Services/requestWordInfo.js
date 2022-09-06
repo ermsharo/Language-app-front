@@ -13,7 +13,6 @@ export const GetWordInfo = (initialUrl) => {
       setIsError(false);
       setIsLoading(true);
       try {
-        console.log("aaa", data);
         const result = await axios(url, {
           headers: {
             "x-access-token": getToken(),
@@ -31,7 +30,7 @@ export const GetWordInfo = (initialUrl) => {
     };
 
     fetchData();
-  }, [data, url]);
+  }, [url]);
 
   return [{ data, isLoading, isError }, setUrl];
 };
