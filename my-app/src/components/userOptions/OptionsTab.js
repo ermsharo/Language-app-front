@@ -42,6 +42,10 @@ function a11yProps(index) {
 }
 
 export default function UserOptions({ setSelectedWord }) {
+  const [wordHistory, setHistory] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [wordList, setwordList] = useState([]);
+
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -71,6 +75,8 @@ export default function UserOptions({ setSelectedWord }) {
           numberOfPages={numberOfPages}
           setNumberOfPages={setNumberOfPages}
           setSelectedWord={setSelectedWord}
+          wordList={wordList}
+          setwordList={setwordList}
         />
       </TabPanel>
       <TabPanel value={value} index={1}>

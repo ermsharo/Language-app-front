@@ -40,7 +40,11 @@ export default function History({ setSelectedWord }) {
         <WordListGrid>
           {data.results !== undefined &&
             data.results.map((item, index) => (
-              <Word index={index} item={item} />
+              <Word
+                index={index}
+                item={item}
+                setSelectedWord={setSelectedWord}
+              />
             ))}
         </WordListGrid>
       </div>

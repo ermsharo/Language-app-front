@@ -54,14 +54,20 @@ const MeaningTitle = styled.div`
 const MeaningText = styled.div`
   padding: 8px;
 `;
-export default function WordInfo({ selectedWord, setSelectedWord }) {
+export default function WordInfo({
+  selectedWord,
+  setSelectedWord,
+  wordsRequested,
+  setWordsRequested,
+}) {
   const [{ data, isLoading, isError }, doFetch] = GetWordInfo(
-    `http://localhost:5000/entries/en/${selectedWord}`
+    selectedWord,
+    setWordsRequested,
+    wordsRequested
   );
   useEffect(() => {
-    // Atualiza o título do documento usando a API do browser
-    console.log("Testing ->", selectedWord);
-    doFetch(`http://localhost:5000/entries/en/${selectedWord}`);
+    // Request the info about the word
+    doFetch(selectedWord);
   }, [selectedWord]);
 
   if (isError) {
@@ -78,6 +84,8 @@ export default function WordInfo({ selectedWord, setSelectedWord }) {
   if (isLoading) return <div>Loading ...</div>;
 
   if (data) {
+    //Insert this word in our history
+
     return (
       <div>
         <WordDisplay>
