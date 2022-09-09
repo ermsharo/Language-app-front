@@ -52,7 +52,11 @@ export default function UserOptions({ setSelectedWord }) {
     setValue(newValue);
   };
 
+  //Page from words
   const [page, setPage] = useState(0);
+  //Page from history
+  const [historyPage, setHistorypage] = useState(0);
+
   const [numberOfPages, setNumberOfPages] = useState(0);
 
   return (
@@ -72,8 +76,6 @@ export default function UserOptions({ setSelectedWord }) {
         <WordList
           page={page}
           setPage={setPage}
-          numberOfPages={numberOfPages}
-          setNumberOfPages={setNumberOfPages}
           setSelectedWord={setSelectedWord}
           wordList={wordList}
           setwordList={setwordList}
@@ -81,11 +83,11 @@ export default function UserOptions({ setSelectedWord }) {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <History
-          page={page}
-          setPage={setPage}
-          numberOfPages={numberOfPages}
-          setNumberOfPages={setNumberOfPages}
+          historyPage={historyPage}
+          setHistorypage={setHistorypage}
           setSelectedWord={setSelectedWord}
+          favorites={favorites}
+          setFavorites={setFavorites}
         />
       </TabPanel>
       <TabPanel value={value} index={2}>

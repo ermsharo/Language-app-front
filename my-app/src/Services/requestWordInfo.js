@@ -3,7 +3,6 @@ import axios from "axios";
 import { getToken } from "../Services/getLoginStatus";
 
 const verifyObjs = (wordRequests, word) => {
-  console.log("word requests here", wordRequests);
   for (let i = 0; i < wordRequests.length; i++) {
     if (wordRequests[i].word === word) {
       return wordRequests[i].data;
@@ -26,10 +25,6 @@ export const GetWordInfo = (
     const fetchData = async () => {
       let isThisWordCached = verifyObjs(wordsRequested, selectedWord);
       if (isThisWordCached) {
-        console.log(
-          `is this word cached -> : ${selectedWord}`,
-          isThisWordCached
-        );
         setIsError(false);
         setIsLoading(false);
         setData(isThisWordCached);
@@ -44,11 +39,9 @@ export const GetWordInfo = (
             },
           });
 
-          //console.log("words requested", wordsRequested)
           setData(result.data["freeDict"]);
-          console.log("Result from word", result.data);
+
           let requestObj = { word: selectedWord, data: data };
-          console.log("Reqest obj", requestObj);
 
           setWordsRequested((wordsRequested) => [
             requestObj,
@@ -58,7 +51,6 @@ export const GetWordInfo = (
           //Now we just
         } catch (error) {
           setIsError(error.response.data);
-          console.log("error ->", error.response.data);
         }
 
         setIsLoading(false);

@@ -43,19 +43,15 @@ export default function CreateUser() {
       ...formInputs,
       [evt.target.name]: value,
     });
-
-    console.log(formInputs);
   }
 
   const createUser = async () => {
-    console.log("chamado", formInputs);
     await axios
       .post("http://localhost:5000/auth/singup", {
         formInputs,
       })
       .then((response) => {
         setRequestAwnser(response.data);
-        console.log("post");
       })
       .catch((error) => {
         console.log(error.toJSON());

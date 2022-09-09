@@ -1,28 +1,47 @@
 import styled from "styled-components";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Word from "./Word";
 import { GetHistoryList } from "../../Services/requestHistory";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import Pagination from "@mui/material/Pagination";
 
 const WordListGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 6px;
 `;
 
-export default function History({ setSelectedWord }) {
+const OptionButton = styled.div`
+  padding: 32px;
+  display: flex;
+  justify-content: center;
+`;
+export default function History({
+  historyPage,
+  setHistorypage,
+  setSelectedWord,
+  favorites,
+  setFavorites,
+}) {
   const navigate = useNavigate();
 
   const fetchMoreData = () => {};
 
-  const [{ data, isLoading, isError }, doFetch] = GetHistoryList(
-    "http://localhost:5000/user/me/history",
-    { hits: [] }
+  const [{ data, isLoading, isError }, changePage] = GetHistoryList(
+    favorites,
+    setFavorites
   );
 
+  useEffect(() => {
+    changePage(historyPage);
+  }, [historyPage]);
+
+  const handleChange = (event, value) => {
+    setFavorites(value);
+  };
+
   if (isError) {
-    console.log("is error from comp ->", isError);
     if (isError.auth === false) navigate("/login");
     return <div>Something went wrong ...</div>;
   }
@@ -47,6 +66,13 @@ export default function History({ setSelectedWord }) {
               />
             ))}
         </WordListGrid>
+        <OptionButton>
+          <Pagination
+            count={data.totalPages}
+            page={historyPage}
+            onChange={handleChange}
+          />
+        </OptionButton>
       </div>
     );
 }

@@ -46,8 +46,6 @@ export default function SingIn() {
       ...formInputs,
       [evt.target.name]: value,
     });
-
-    console.log(formInputs);
   }
 
   const saveUserInfo = (id, token, user) => {
@@ -58,20 +56,16 @@ export default function SingIn() {
   };
 
   const singIn = async () => {
-    console.log("chamado", formInputs);
     await axios
       .post("http://localhost:5000/auth/singin", {
         formInputs,
       })
       .then((response) => {
-        console.log("response data", response.data);
-        //console.log("post");
         setRequestErrorAwnser(false);
         saveUserInfo(response.data.id, response.data.token, response.data.name);
         navigate("/");
       })
       .catch((error) => {
-        console.log("error ->", error.response.data);
         setRequestErrorAwnser(error.response.data);
       });
   };
