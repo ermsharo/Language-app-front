@@ -8,8 +8,6 @@ export const GetWordList = (setWordList, wordList) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  // getLastPage(wordList);
-
   useEffect(() => {
     const fetchData = async () => {
       setIsError(false);

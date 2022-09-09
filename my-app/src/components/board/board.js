@@ -18,7 +18,6 @@ const BoardBox = styled.div`
 
 export default function Board() {
   const [selectedWord, setSelectedWord] = useState(null);
-
   const [wordsRequested, setWordsRequested] = useState([]);
 
   return (

@@ -45,7 +45,6 @@ export default function UserOptions({ setSelectedWord }) {
   const [wordHistory, setHistory] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [wordList, setwordList] = useState([]);
-
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -79,6 +78,8 @@ export default function UserOptions({ setSelectedWord }) {
           setSelectedWord={setSelectedWord}
           wordList={wordList}
           setwordList={setwordList}
+          favorites={favorites}
+          setFavorites={setFavorites}
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -97,6 +98,8 @@ export default function UserOptions({ setSelectedWord }) {
           numberOfPages={numberOfPages}
           setNumberOfPages={setNumberOfPages}
           setSelectedWord={setSelectedWord}
+          favorites={favorites}
+          setFavorites={setFavorites}
         />
       </TabPanel>
     </Box>
