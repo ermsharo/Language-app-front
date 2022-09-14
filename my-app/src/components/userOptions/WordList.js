@@ -24,8 +24,10 @@ export default function WordList({
   setwordList,
   page,
   setPage,
+  favorites,
+  setFavorites,
 }) {
-  const navigate = useNavigate(); //
+  const navigate = useNavigate();
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -65,6 +67,8 @@ export default function WordList({
                 index={index}
                 item={item}
                 setSelectedWord={setSelectedWord}
+                favorites={favorites}
+                setFavorites={setFavorites}
               />
             ))}
         </WordListGrid>

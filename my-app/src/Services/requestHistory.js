@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import axios from "axios";
 import { getToken } from "../Services/getLoginStatus";
 
-export const GetHistoryList = (favorites, setFavorites) => {
+export const GetHistoryList = () => {
   const [data, setData] = useState(null);
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);

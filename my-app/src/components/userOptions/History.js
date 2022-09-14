@@ -26,7 +26,7 @@ export default function History({
 }) {
   const navigate = useNavigate();
 
-  const fetchMoreData = () => {};
+  const fetchMoreData = () => { };
 
   const [{ data, isLoading, isError }, changePage] = GetHistoryList(
     favorites,
@@ -63,6 +63,8 @@ export default function History({
                 index={index}
                 item={item}
                 setSelectedWord={setSelectedWord}
+                favorites={favorites}
+                setFavorites={setFavorites}
               />
             ))}
         </WordListGrid>

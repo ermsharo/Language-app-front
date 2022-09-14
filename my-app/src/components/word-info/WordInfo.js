@@ -65,8 +65,12 @@ export default function WordInfo({
     setWordsRequested,
     wordsRequested
   );
+
+
+
   useEffect(() => {
-    // Request the info about the word
+
+
     doFetch(selectedWord);
   }, [selectedWord]);
 
@@ -84,8 +88,6 @@ export default function WordInfo({
   if (isLoading) return <div>Loading ...</div>;
 
   if (data) {
-    //Insert this word in our history
-
     return (
       <div>
         <WordDisplay>

@@ -2,14 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getToken } from "../Services/getLoginStatus";
 
-const verifyObjs = (wordRequests, word) => {
-  for (let i = 0; i < wordRequests.length; i++) {
-    if (wordRequests[i].word === word) {
-      return wordRequests[i].data;
-    }
-  }
-  return false;
-};
+
 
 export const GetWordInfo = (
   selectedWord,
@@ -21,43 +14,59 @@ export const GetWordInfo = (
   const [isError, setIsError] = useState(false);
   const [word, setWord] = useState(selectedWord);
 
+
+
+  const verifyWordAlredyRequest = (wordRequests, word) => {
+    for (let i = 0; i < wordRequests.length; i++) {
+      if (wordRequests[i].word === word) {
+        return wordRequests[i].data;
+      }
+    }
+    return false;
+  };
+
+
   useEffect(() => {
     const fetchData = async () => {
-      let isThisWordCached = verifyObjs(wordsRequested, selectedWord);
-      if (isThisWordCached) {
-        setIsError(false);
-        setIsLoading(false);
-        setData(isThisWordCached);
-      } else {
-        setIsError(false);
-        setIsLoading(true);
-        try {
-          const url = `http://localhost:5000/entries/en/${word}`;
-          const result = await axios(url, {
-            headers: {
-              "x-access-token": getToken(),
-            },
-          });
 
-          setData(result.data["freeDict"]);
+      setIsError(false);
+      setIsLoading(true);
+      try {
+        const url = `http://localhost:5000/entries/en/${word}`;
+        const result = await axios(url, {
+          headers: {
+            "x-access-token": getToken(),
+          },
+        });
 
-          let requestObj = { word: selectedWord, data: data };
+        setData(result.data["freeDict"]);
 
-          setWordsRequested((wordsRequested) => [
-            requestObj,
-            ...wordsRequested,
-          ]);
+        let requestObj = { word: selectedWord, data: result.data["freeDict"] };
 
-          //Now we just
-        } catch (error) {
-          setIsError(error.response.data);
-        }
+        setWordsRequested((wordsRequested) => [
+          requestObj,
+          ...wordsRequested,
+        ]);
 
-        setIsLoading(false);
+        //Now we just
+      } catch (error) {
+        setIsError(error.response.data);
       }
+
+      setIsLoading(false);
+
     };
 
-    fetchData();
+    if (verifyWordAlredyRequest(wordsRequested, selectedWord)) {
+      console.log("word alredy exist");
+      setData(verifyWordAlredyRequest(wordsRequested, selectedWord));
+      setIsError(false);
+      setIsLoading(false);
+    } else {
+
+      fetchData();
+    }
+
   }, [word]);
 
   return [{ data, isLoading, isError }, setWord];

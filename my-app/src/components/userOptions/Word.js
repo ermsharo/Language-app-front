@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import * as React from "react";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Box from "@mui/material/Box";
+import { useEffect } from "react";
 
 const GenerateWordColor = (word) => {
   let alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -70,7 +67,52 @@ const SecoundButton = styled.button`
   width: 40px;
 `;
 
-export default function Word({ item, index, setSelectedWord }) {
+export default function Word({
+  item,
+  index,
+  setSelectedWord,
+  favorites,
+  setFavorites,
+}) {
+  const favoriteStruct = (item, word_id, isFavorited) => {
+    return {
+      word: item,
+      word_id: word_id,
+      isFavorited: isFavorited,
+    };
+  };
+
+  const elementIsFavorited = (word) => {
+    const result = favorites.find((favs) => favs.word === word);
+
+    if (result !== undefined) {
+      return result.isFavorited;
+    }
+    return false;
+  };
+
+  const changeFavoriteWordArray = (array, word, isFavorited) => {
+    const newArr = array.map((favObj) => {
+      if (favObj.word === word) {
+        return { ...favObj, isFavorited: isFavorited };
+      }
+      return favObj;
+    });
+    console.log("NEW ARRAY ->", newArr);
+    return newArr;
+  };
+
+  useEffect(() => {
+    const initializeFavorites = (item, word_id, isFavorited) => {
+
+
+      console.log(item);
+
+    };
+    initializeFavorites(item, 1, false);
+   // console.log("favorites", favorites)
+  }, [item]);
+
   return (
     <>
       <WordBox style={{ backgroundColor: GenerateWordColor(item) }}>
@@ -82,7 +124,19 @@ export default function Word({ item, index, setSelectedWord }) {
           {item}
         </FirstButton>
         <SecoundButton>
-          <AiFillStar /> <AiOutlineStar />
+          {elementIsFavorited(item) ? (
+            <AiFillStar
+              onClick={() => {
+                changeFavoriteWordArray(favorites, item, false);
+              }}
+            />
+          ) : (
+            <AiOutlineStar
+              onClick={() => {
+                changeFavoriteWordArray(favorites, item, true);
+              }}
+            />
+          )}
         </SecoundButton>
       </WordBox>
     </>
