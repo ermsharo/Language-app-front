@@ -9,7 +9,7 @@ import Pagination from "@mui/material/Pagination";
 const WordListGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 6px;
+  grid-gap: 24px;
 `;
 
 const OptionButton = styled.div`

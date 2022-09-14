@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getToken } from "../Services/getLoginStatus";
 
-
-
 export const GetWordInfo = (
   selectedWord,
   setWordsRequested,
@@ -14,8 +12,6 @@ export const GetWordInfo = (
   const [isError, setIsError] = useState(false);
   const [word, setWord] = useState(selectedWord);
 
-
-
   const verifyWordAlredyRequest = (wordRequests, word) => {
     for (let i = 0; i < wordRequests.length; i++) {
       if (wordRequests[i].word === word) {
@@ -25,10 +21,8 @@ export const GetWordInfo = (
     return false;
   };
 
-
   useEffect(() => {
     const fetchData = async () => {
-
       setIsError(false);
       setIsLoading(true);
       try {
@@ -43,10 +37,7 @@ export const GetWordInfo = (
 
         let requestObj = { word: selectedWord, data: result.data["freeDict"] };
 
-        setWordsRequested((wordsRequested) => [
-          requestObj,
-          ...wordsRequested,
-        ]);
+        setWordsRequested((wordsRequested) => [requestObj, ...wordsRequested]);
 
         //Now we just
       } catch (error) {
@@ -54,7 +45,6 @@ export const GetWordInfo = (
       }
 
       setIsLoading(false);
-
     };
 
     if (verifyWordAlredyRequest(wordsRequested, selectedWord)) {
@@ -63,10 +53,8 @@ export const GetWordInfo = (
       setIsError(false);
       setIsLoading(false);
     } else {
-
       fetchData();
     }
-
   }, [word]);
 
   return [{ data, isLoading, isError }, setWord];

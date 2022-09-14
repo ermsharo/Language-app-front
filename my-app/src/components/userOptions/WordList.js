@@ -33,16 +33,27 @@ export default function WordList({
     setPage(value);
   };
 
-  const fetchMoreData = () => {};
+  const initializeFavorites = (item, word_id, isFavorited) => {
+    let requestObj = {
+      word: item,
+      word_id: word_id,
+      isFavorited: isFavorited,
+    };
+    console.log("favorites", favorites);
+
+    setFavorites((favorites) => [requestObj, ...favorites]);
+  };
 
   const [{ data, isLoading, isError }, changePage] = GetWordList(
     setwordList,
-    wordList
+    wordList,
+    favorites,
+    setFavorites
   );
 
   useEffect(() => {
     changePage(page);
-  }, [page]);
+  }, [changePage, page, favorites]);
 
   if (isError) {
     if (isError.auth === false) navigate("/login");
@@ -50,15 +61,15 @@ export default function WordList({
   }
   if (isLoading) return <div>Loading ...</div>;
 
-  if (data)
+  if (data) {
     return (
       <div>
-        <InfiniteScroll
+        {/* <InfiniteScroll
           dataLength="10"
           next={fetchMoreData}
           hasMore={true}
           loader={<h4>Loading...</h4>}
-        ></InfiniteScroll>
+        ></InfiniteScroll> */}
 
         <WordListGrid>
           {data.results !== undefined &&
@@ -81,4 +92,5 @@ export default function WordList({
         </OptionButton>
       </div>
     );
+  }
 }

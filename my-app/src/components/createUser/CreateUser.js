@@ -12,13 +12,21 @@ const BoardBox = styled.div`
   width: 100%;
 `;
 
-const LoginBox = styled.div`
+const FormBox = styled.div`
   padding-top: 32px;
   grid-column: 2/6;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: 16px;
+
+  input {
+    font-family: "Varela Round", sans-serif;
+  }
+  button {
+    font-family: "Varela Round", sans-serif;
+    font-weight: 700;
+  }
 `;
 
 const LogoBox = styled.div`
@@ -65,7 +73,7 @@ export default function CreateUser() {
           <Logo color="#00008b" size="6vw" />
         </LogoBox>
         <Grid>
-          <LoginBox>
+          <FormBox>
             <TextField
               fullWidth
               id="outlined-name"
@@ -111,7 +119,7 @@ export default function CreateUser() {
             >
               Create user
             </Button>
-          </LoginBox>
+          </FormBox>
         </Grid>
       </BoardBox>
     </>

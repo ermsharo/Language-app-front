@@ -1,48 +1,17 @@
 import styled from "styled-components";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useEffect } from "react";
-
-const GenerateWordColor = (word) => {
-  let alphabet = "abcdefghijklmnopqrstuvwxyz";
-  let colors = [
-    "#DCFFDE",
-    "#BDEEDF",
-    "#FFBCCD",
-    "#FDFCDD",
-    "#DECEDF",
-    "#FDDDCB",
-    "#FFFDEE",
-    "#CBDDEC",
-    "#EBFCFB",
-    "#EFEFBD",
-    "#DFBDFE",
-    "#CDFEDF",
-    "#BBDEFE",
-    "#DEDCDF",
-    "#BEFDBC",
-    "#DFCDEE",
-    "#BCFBEC",
-    "#ECFEFD",
-    "#EDDCBF",
-    "#ECFEFE",
-    "#BFDDFE",
-    "#EEFFCB",
-    "#FBEDCD",
-    "#BEFDFC",
-    "#CCDBEB",
-    "#BDCECD",
-  ];
-
-  return colors[alphabet.indexOf(word[0])];
-};
+import { GenerateWordColor } from "./../../Styles/StyleFunctions";
 
 const WordBox = styled.div`
-  padding: 8px;
-  border: 1px solid black;
+  padding: 16px;
+
   text-align: center;
-  border-radius: 5px;
+  -webkit-box-shadow: 3px 13px 14px -5px rgba(0, 0, 0, 0.19);
+  box-shadow: 3px 13px 14px -5px rgba(0, 0, 0, 0.19);
   display: flex;
   justify-content: space-between;
+  font-family: "Roboto Slab", serif;
 
   button {
     background: none;
@@ -52,6 +21,8 @@ const WordBox = styled.div`
     font: inherit;
     cursor: pointer;
     outline: inherit;
+    text-transform: capitalize;
+    font-weight: 400;
   }
 `;
 
@@ -74,14 +45,6 @@ export default function Word({
   favorites,
   setFavorites,
 }) {
-  const favoriteStruct = (item, word_id, isFavorited) => {
-    return {
-      word: item,
-      word_id: word_id,
-      isFavorited: isFavorited,
-    };
-  };
-
   const elementIsFavorited = (word) => {
     const result = favorites.find((favs) => favs.word === word);
 
@@ -103,14 +66,8 @@ export default function Word({
   };
 
   useEffect(() => {
-    const initializeFavorites = (item, word_id, isFavorited) => {
-
-
-      console.log(item);
-
-    };
-    initializeFavorites(item, 1, false);
-   // console.log("favorites", favorites)
+    //console.log("Favorites", favorites);
+    // console.log("favorites", favorites);
   }, [item]);
 
   return (

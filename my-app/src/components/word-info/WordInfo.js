@@ -5,13 +5,13 @@ import Button from "@mui/material/Button";
 import ReactAudioPlayer from "react-audio-player";
 import { GetWordInfo } from "./../../Services/requestWordInfo";
 import Feedback from "./../Feedback/FeedBack";
+import { GenerateWordColor } from "./../../Styles/StyleFunctions";
 
 const WordDisplay = styled.div`
   width: 100%;
-  background-color: lightblue;
   text-align: center;
   padding: 32px 0px;
-  font-family: "Helmida", sans-serif;
+  font-family: "Roboto Slab", serif;
 `;
 
 const WordText = styled.div`
@@ -66,11 +66,7 @@ export default function WordInfo({
     wordsRequested
   );
 
-
-
   useEffect(() => {
-
-
     doFetch(selectedWord);
   }, [selectedWord]);
 
@@ -90,7 +86,9 @@ export default function WordInfo({
   if (data) {
     return (
       <div>
-        <WordDisplay>
+        <WordDisplay
+          style={{ backgroundColor: GenerateWordColor(data[0]?.word) }}
+        >
           <WordText>{data[0]?.word}</WordText>
           <FoneticText>{data[0]?.phonetics[1]?.text}</FoneticText>
         </WordDisplay>
