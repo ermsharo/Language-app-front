@@ -4,10 +4,34 @@ import CreateUser from "./components/createUser/CreateUser";
 import Header from "./components/header/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import styled from "styled-components";
+import {
+  HeaderColor,
+  DarkFontColor,
+  LightFontColor,
+  BackgroundColor,
+  SecundaryBackgroundColor,
+  GenerateWordColor,
+} from "./Styles/StyleFunctions.js";
+
+const AppBox = styled.div`
+  background-color: ${BackgroundColor};
+  color: ${DarkFontColor};
+  min-height: 100vh;
+
+  input {
+    font-family: "Varela Round", sans-serif;
+  }
+
+  a {
+    font-family: "Varela Round", sans-serif;
+    font-weight: 700;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
+    <AppBox>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Dict app</title>
@@ -45,7 +69,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
-    </div>
+    </AppBox>
   );
 }
 

@@ -9,10 +9,21 @@ import React, { useState, useEffect } from "react";
 import Feedback from "./../Feedback/FeedBack";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {
+  HeaderColor,
+  DarkFontColor,
+  LightFontColor,
+  BackgroundColor,
+  SecundaryBackgroundColor,
+  GenerateWordColor,
+} from "./../../Styles/StyleFunctions";
 
 const BoardBox = styled.div`
   padding-top: 32px;
   width: 100%;
+  font-family: "Varela Round", sans-serif;
+  font-weight: 400;
+  height: 100%;
 `;
 
 const LoginBox = styled.div`

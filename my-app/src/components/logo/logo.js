@@ -4,18 +4,9 @@ import WordInfo from "../word-info/WordInfo";
 import OptionsTabs from "./../userOptions/OptionsTab";
 
 const LogoBox = styled.div`
-font-family: 'Sedgwick Ave', sans-serif;
-
+  font-family: "Sedgwick Ave", sans-serif;
 `;
 
-export default function Logo({ color ,size}) {
-
-
-    return (
-        <LogoBox style = {{color: color,
-        fontSize: size,
-        }}>
-            Dict App
-        </LogoBox>
-    );
+export default function Logo({ color, size }) {
+  return <LogoBox style={{ color: color, fontSize: size }}>Dict App</LogoBox>;
 }

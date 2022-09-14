@@ -6,6 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { isLogged, getUserInfo } from "../../Services/getLoginStatus";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import {
+  HeaderColor,
+  DarkFontColor,
+  LightFontColor,
+  BackgroundColor,
+  SecundaryBackgroundColor,
+  GenerateWordColor,
+} from "./../../Styles/StyleFunctions";
 
 const LoginBox = styled.div`
   padding: 4px;
@@ -13,13 +21,17 @@ const LoginBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+
+  color: white;
 `;
 
 const UserTitle = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  text-transform: uppercase;
+  text-transform: capitalize;
+  font-family: "Varela Round", sans-serif;
+  font-weight: 400;
 `;
 
 const BoardBox = styled.div`
@@ -32,13 +44,19 @@ export default function LoginAccess() {
   if (isLogged())
     return (
       <LoginBox>
-        <UserTitle>
-          <Typography>{getUserInfo().user}</Typography>
-        </UserTitle>
+        <UserTitle>{getUserInfo().user}</UserTitle>
 
         <Tooltip title="Open settings">
           <IconButton sx={{ p: 0 }}>
-            <Avatar alt={getUserInfo().user.toUpperCase()} />
+            <Avatar
+              style={{
+                backgroundColor: GenerateWordColor(getUserInfo().user),
+                color: DarkFontColor,
+              }}
+              alt={getUserInfo().user}
+            >
+              {getUserInfo().user[0].toUpperCase()}
+            </Avatar>
           </IconButton>
         </Tooltip>
       </LoginBox>

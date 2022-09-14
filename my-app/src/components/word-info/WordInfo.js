@@ -6,12 +6,20 @@ import ReactAudioPlayer from "react-audio-player";
 import { GetWordInfo } from "./../../Services/requestWordInfo";
 import Feedback from "./../Feedback/FeedBack";
 import { GenerateWordColor } from "./../../Styles/StyleFunctions";
+import {
+  HeaderColor,
+  DarkFontColor,
+  LightFontColor,
+  BackgroundColor,
+  SecundaryBackgroundColor,
+} from "./../../Styles/StyleFunctions";
 
 const WordDisplay = styled.div`
   width: 100%;
   text-align: center;
   padding: 32px 0px;
   font-family: "Roboto Slab", serif;
+  color: ${DarkFontColor};
 `;
 
 const WordText = styled.div`

@@ -26,7 +26,7 @@ export default function History({
 }) {
   const navigate = useNavigate();
 
-  const fetchMoreData = () => { };
+  const fetchMoreData = () => {};
 
   const [{ data, isLoading, isError }, changePage] = GetHistoryList(
     favorites,
@@ -49,12 +49,12 @@ export default function History({
   if (data)
     return (
       <div>
-        <InfiniteScroll
+        {/* <InfiniteScroll
           dataLength="10"
           next={fetchMoreData}
           hasMore={true}
           loader={<h4>Loading...</h4>}
-        ></InfiniteScroll>
+        ></InfiniteScroll> */}
 
         <WordListGrid>
           {data.results !== undefined &&

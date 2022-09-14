@@ -2,6 +2,13 @@ import styled from "styled-components";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useEffect } from "react";
 import { GenerateWordColor } from "./../../Styles/StyleFunctions";
+import {
+  HeaderColor,
+  DarkFontColor,
+  LightFontColor,
+  BackgroundColor,
+  SecundaryBackgroundColor,
+} from "./../../Styles/StyleFunctions";
 
 const WordBox = styled.div`
   padding: 16px;
@@ -23,6 +30,7 @@ const WordBox = styled.div`
     outline: inherit;
     text-transform: capitalize;
     font-weight: 400;
+    color: ${DarkFontColor};
   }
 `;
 

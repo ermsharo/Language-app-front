@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import History from "./History";
 import Favorites from "./Favorites";
 import WordList from "./WordList";
-
+import styled from "styled-components";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -41,6 +41,10 @@ function a11yProps(index) {
   };
 }
 
+const TabsStyle = styled.div`
+  color: white;
+`;
+
 export default function UserOptions({ setSelectedWord }) {
   const [wordHistory, setHistory] = useState([]);
   const [favorites, setFavorites] = useState([]);
@@ -59,14 +63,14 @@ export default function UserOptions({ setSelectedWord }) {
   const [numberOfPages, setNumberOfPages] = useState(0);
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <TabsStyle>
+      <Box>
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Word List" {...a11yProps(0)} />
+          <Tab color="white" label="Word List" {...a11yProps(0)} />
           <Tab label="History" {...a11yProps(1)} />
           <Tab label="Favorites" {...a11yProps(2)} />
         </Tabs>
@@ -102,6 +106,6 @@ export default function UserOptions({ setSelectedWord }) {
           setFavorites={setFavorites}
         />
       </TabPanel>
-    </Box>
+    </TabsStyle>
   );
 }

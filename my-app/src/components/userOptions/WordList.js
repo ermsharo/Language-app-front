@@ -5,6 +5,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
+import {
+  HeaderColor,
+  DarkFontColor,
+  LightFontColor,
+  BackgroundColor,
+  SecundaryBackgroundColor,
+} from "./../../Styles/StyleFunctions";
 
 const WordListGrid = styled.div`
   display: grid;
@@ -64,13 +71,6 @@ export default function WordList({
   if (data) {
     return (
       <div>
-        {/* <InfiniteScroll
-          dataLength="10"
-          next={fetchMoreData}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-        ></InfiniteScroll> */}
-
         <WordListGrid>
           {data.results !== undefined &&
             data.results.map((item, index) => (
