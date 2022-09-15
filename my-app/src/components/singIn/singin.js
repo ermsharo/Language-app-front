@@ -19,7 +19,6 @@ import {
 } from "./../../Styles/StyleFunctions";
 
 const BoardBox = styled.div`
-  padding-top: 32px;
   width: 100%;
   font-family: "Varela Round", sans-serif;
   font-weight: 400;
@@ -33,12 +32,41 @@ const LoginBox = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   gap: 16px;
+
+
+  input {
+    font-family: "Varela Round", sans-serif;
+  }
+  button {
+    font-family: "Varela Round", sans-serif;
+    font-weight: 700;
+    background-color: ${HeaderColor};
+    border-radius: 20px;
+    margin-top: 16px;
+
+    &:hover {
+      background-color: ${HeaderColor};
+      opacity: 0.9;
+    }
+  }
 `;
 
 const LogoBox = styled.div`
   display: flex;
   justify-content: center;
   padding: 16px;
+`;
+
+const CreateAccountButton = styled.div`
+  font-family: "Varela Round", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  padding-left: 8px;
+  &:hover {
+    opacity: 0.7;
+  }
+
 `;
 
 export default function SingIn() {
@@ -121,9 +149,14 @@ export default function SingIn() {
             >
               Login
             </Button>
-            <Link to="/login/create-account">
-              <Typography>Create account</Typography>
-            </Link>
+
+            <CreateAccountButton
+              onClick={() => {
+                navigate("create-account");
+              }}
+            >
+              Create account
+            </CreateAccountButton>
           </LoginBox>
         </Grid>
       </BoardBox>

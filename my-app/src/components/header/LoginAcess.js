@@ -5,7 +5,12 @@ import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
 import { isLogged, getUserInfo } from "../../Services/getLoginStatus";
 import { Typography } from "@mui/material";
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
+import { logout } from "../../Services/getLoginStatus";
 import {
   HeaderColor,
   DarkFontColor,
@@ -23,6 +28,33 @@ const LoginBox = styled.div`
   gap: 16px;
 
   color: white;
+  button {
+    font-family: "Varela Round", sans-serif;
+    font-weight: 700;
+    background-color: ${HeaderColor};
+    border-radius: 20px;
+
+    &:hover {
+      background-color: ${HeaderColor};
+      opacity: 0.9;
+    }
+  }
+`;
+
+const LoginButton = styled.div`
+  color: white;
+  button {
+    font-family: "Varela Round", sans-serif;
+    font-weight: 700;
+    background-color: ${LightFontColor};
+    border-radius: 20px;
+    color: ${DarkFontColor};
+
+    &:hover {
+      background-color: ${LightFontColor};
+      opacity: 0.9;
+    }
+  }
 `;
 
 const UserTitle = styled.div`
@@ -41,34 +73,84 @@ const BoardBox = styled.div`
 
 export default function LoginAccess() {
   const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const userLogout = () => {
+    logout();
+    setAnchorEl(null);
+    navigate("/login");
+  };
 
   if (isLogged())
     return (
       <LoginBox>
         <UserTitle>{getUserInfo().user}</UserTitle>
 
-        <Tooltip title="Open settings">
-          <IconButton sx={{ p: 0 }}>
-            <Avatar
-              style={{
-                backgroundColor: GenerateWordColor(getUserInfo().user),
-                color: DarkFontColor,
-              }}
-              alt={getUserInfo().user}
+        <div>
+          <Tooltip title="Open settings">
+            <IconButton
+              sx={{ p: 0 }}
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
             >
-              {getUserInfo().user[0].toUpperCase()}
-            </Avatar>
-          </IconButton>
-        </Tooltip>
+              <Avatar
+                style={{
+                  backgroundColor: GenerateWordColor(getUserInfo().user),
+                  color: DarkFontColor,
+                }}
+                alt={getUserInfo().user}
+              >
+                {getUserInfo().user[0].toUpperCase()}
+              </Avatar>
+            </IconButton>
+          </Tooltip>
+
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                userLogout();
+              }}
+            >
+              Logout
+            </MenuItem>
+          </Menu>
+        </div>
       </LoginBox>
     );
 
   return (
     <UserTitle>
       {" "}
-      <Link to="/login/">
-        <Typography color="white">Login</Typography>
-      </Link>
+      <LoginButton>
+        <Button
+          onClick={() => {
+            navigate("/login");
+          }}
+          fullWidth
+          variant="contained"
+        >
+          Login
+        </Button>
+      </LoginButton>
     </UserTitle>
   );
 }

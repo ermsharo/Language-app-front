@@ -34,6 +34,6 @@ export const GenerateWordColor = (word) => {
 
 export const HeaderColor = "#012E40";
 export const DarkFontColor = "#080706";
-export const LightFontColor = "##FFFFFF";
+export const LightFontColor = "#FFFFFF";
 export const BackgroundColor = "#F0EBE3";
 export const SecundaryBackgroundColor = "#051C28";

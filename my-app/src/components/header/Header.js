@@ -13,6 +13,7 @@ import {
   BackgroundColor,
   SecundaryBackgroundColor,
 } from "./../../Styles/StyleFunctions";
+import { useNavigate } from "react-router-dom";
 
 const HeaderBox = styled.div`
   display: flex;
@@ -20,16 +21,27 @@ const HeaderBox = styled.div`
   background-color: ${HeaderColor};
   padding: 16px 32px;
   border: 6px;
+  margin-bottom: 16px;
+  -webkit-box-shadow: 0px -1px 8px 5px rgba(0, 0, 0, 0.17);
+  box-shadow: 0px -1px 8px 5px rgba(0, 0, 0, 0.17);
+`;
+
+const LogoBox = styled.div`
+  cursor: pointer;
 `;
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <header>
-      {" "}
       <HeaderBox>
-        <Link to="/">
+        <LogoBox
+          onClick={() => {
+            navigate("/words");
+          }}
+        >
           <Logo color="white" size="32px" />
-        </Link>
+        </LogoBox>
 
         <LoginAcess />
       </HeaderBox>

@@ -15,6 +15,7 @@ const TabsBox = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 4px;
+  margin-bottom: 24px;
 `;
 
 export default function UserOptions({ setSelectedWord, tab }) {

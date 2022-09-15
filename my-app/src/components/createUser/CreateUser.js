@@ -6,10 +6,19 @@ import Logo from "../logo/logo";
 import React, { useState } from "react";
 import Feedback from "./../Feedback/FeedBack";
 import axios from "axios";
+import {
+  HeaderColor,
+  DarkFontColor,
+  LightFontColor,
+  BackgroundColor,
+  SecundaryBackgroundColor,
+  GenerateWordColor,
+} from "./../../Styles/StyleFunctions";
 
 const BoardBox = styled.div`
   padding-top: 32px;
   width: 100%;
+  padding-bottom: 32px;
 `;
 
 const FormBox = styled.div`
@@ -26,6 +35,14 @@ const FormBox = styled.div`
   button {
     font-family: "Varela Round", sans-serif;
     font-weight: 700;
+    background-color: ${HeaderColor};
+    border-radius: 20px;
+    margin-top: 16px;
+
+    &:hover {
+      background-color: ${HeaderColor};
+      opacity: 0.9;
+    }
   }
 `;
 
