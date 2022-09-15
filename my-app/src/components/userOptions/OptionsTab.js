@@ -45,7 +45,7 @@ const TabsStyle = styled.div`
   color: white;
 `;
 
-export default function UserOptions({ setSelectedWord }) {
+export default function UserOptions({ setSelectedWord , tab}) {
   const [wordHistory, setHistory] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [wordList, setwordList] = useState([]);

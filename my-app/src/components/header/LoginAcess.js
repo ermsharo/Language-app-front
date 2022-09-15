@@ -32,6 +32,7 @@ const UserTitle = styled.div`
   text-transform: capitalize;
   font-family: "Varela Round", sans-serif;
   font-weight: 400;
+  font-size: 20px;
 `;
 
 const BoardBox = styled.div`

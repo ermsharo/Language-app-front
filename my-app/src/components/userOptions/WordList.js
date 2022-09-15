@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
+import Loading from "../Loading/Loading";
 import {
   HeaderColor,
   DarkFontColor,
@@ -66,7 +67,7 @@ export default function WordList({
     if (isError.auth === false) navigate("/login");
     return <div>Something went wrong ...</div>;
   }
-  if (isLoading) return <div>Loading ...</div>;
+  if (isLoading) return <Loading />;
 
   if (data) {
     return (

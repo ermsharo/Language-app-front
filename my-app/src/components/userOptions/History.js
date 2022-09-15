@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
+import Loading from "../Loading/Loading";
 
 const WordListGrid = styled.div`
   display: grid;
@@ -45,17 +46,10 @@ export default function History({
     if (isError.auth === false) navigate("/login");
     return <div>Something went wrong ...</div>;
   }
-  if (isLoading) return <div>Loading ...</div>;
+  if (isLoading) return <Loading />;
   if (data)
     return (
       <div>
-        {/* <InfiniteScroll
-          dataLength="10"
-          next={fetchMoreData}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-        ></InfiniteScroll> */}
-
         <WordListGrid>
           {data.results !== undefined &&
             data.results.map((item, index) => (

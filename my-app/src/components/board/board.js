@@ -10,6 +10,14 @@ import {
   BackgroundColor,
   SecundaryBackgroundColor,
 } from "./../../Styles/StyleFunctions";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
+
 
 const WordInfoBox = styled.div`
   grid-column: 1/3;
@@ -33,8 +41,11 @@ export default function Board() {
   const [selectedWord, setSelectedWord] = useState(null);
   const [wordsRequested, setWordsRequested] = useState([]);
 
+  let { tab } = useParams();
+
   return (
     <>
+      {tab}
       <BoardBox>
         <Grid>
           <WordInfoBox>
@@ -48,7 +59,7 @@ export default function Board() {
             )}
           </WordInfoBox>
           <OptionsBox>
-            <OptionsTabs setSelectedWord={setSelectedWord} />
+            <OptionsTabs setSelectedWord={setSelectedWord} tab={tab} />
           </OptionsBox>
         </Grid>
       </BoardBox>

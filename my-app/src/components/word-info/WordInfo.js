@@ -13,7 +13,7 @@ import {
   BackgroundColor,
   SecundaryBackgroundColor,
 } from "./../../Styles/StyleFunctions";
-
+import Loading from "../Loading/Loading";
 const WordDisplay = styled.div`
   width: 100%;
   text-align: center;
@@ -89,7 +89,7 @@ export default function WordInfo({
       </>
     );
   }
-  if (isLoading) return <div>Loading ...</div>;
+  if (isLoading) return <Loading />;
 
   if (data) {
     return (
