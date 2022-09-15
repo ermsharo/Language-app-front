@@ -1,81 +1,54 @@
-import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import React, { useState } from "react";
 import History from "./History";
 import Favorites from "./Favorites";
 import WordList from "./WordList";
 import styled from "styled-components";
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
+import Tab from "./Tab";
 
 const TabsStyle = styled.div`
   color: white;
+  padding-bottom: 16px;
 `;
 
-export default function UserOptions({ setSelectedWord , tab}) {
+const TabsBox = styled.div`
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+`;
+
+export default function UserOptions({ setSelectedWord, tab }) {
   const [wordHistory, setHistory] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [wordList, setwordList] = useState([]);
-  const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  let tables = ["words", "history", "favorites"];
+
+  const verifyTable = (tab) => {
+    let index = tables.indexOf(tab);
+    console.log("index", index);
+    if (index === -1) return 0;
+    return index;
   };
-
   //Page from words
   const [page, setPage] = useState(0);
   //Page from history
   const [historyPage, setHistorypage] = useState(0);
+  //page from favorites
+  const [favoritesPage, setFavoritespage] = useState(0);
 
   const [numberOfPages, setNumberOfPages] = useState(0);
 
   return (
-    <TabsStyle>
-      <Box>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          <Tab color="white" label="Word List" {...a11yProps(0)} />
-          <Tab label="History" {...a11yProps(1)} />
-          <Tab label="Favorites" {...a11yProps(2)} />
-        </Tabs>
-      </Box>
-      <TabPanel value={value} index={0}>
+    <>
+      <TabsStyle>
+        <TabsBox>
+          <Tab isSelected={verifyTable(tab) === 0} content={tables[0]} />
+          <Tab isSelected={verifyTable(tab) === 1} content={tables[1]} />
+          <Tab isSelected={verifyTable(tab) === 2} content={tables[2]} />
+        </TabsBox>
+      </TabsStyle>
+      {verifyTable(tab) === 0 && (
         <WordList
           page={page}
           setPage={setPage}
@@ -85,8 +58,9 @@ export default function UserOptions({ setSelectedWord , tab}) {
           favorites={favorites}
           setFavorites={setFavorites}
         />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
+      )}
+
+      {verifyTable(tab) === 1 && (
         <History
           historyPage={historyPage}
           setHistorypage={setHistorypage}
@@ -94,8 +68,9 @@ export default function UserOptions({ setSelectedWord , tab}) {
           favorites={favorites}
           setFavorites={setFavorites}
         />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
+      )}
+
+      {verifyTable(tab) === 2 && (
         <Favorites
           page={page}
           setPage={setPage}
@@ -105,7 +80,7 @@ export default function UserOptions({ setSelectedWord , tab}) {
           favorites={favorites}
           setFavorites={setFavorites}
         />
-      </TabPanel>
-    </TabsStyle>
+      )}
+    </>
   );
 }

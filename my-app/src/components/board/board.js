@@ -3,21 +3,8 @@ import styled from "styled-components";
 import WordInfo from "../word-info/WordInfo";
 import OptionsTabs from "./../userOptions/OptionsTab";
 import React, { useState } from "react";
-import {
-  HeaderColor,
-  DarkFontColor,
-  LightFontColor,
-  BackgroundColor,
-  SecundaryBackgroundColor,
-} from "./../../Styles/StyleFunctions";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams
-} from "react-router-dom";
-
+import { DarkFontColor, BackgroundColor } from "./../../Styles/StyleFunctions";
+import { useParams } from "react-router-dom";
 
 const WordInfoBox = styled.div`
   grid-column: 1/3;
@@ -29,12 +16,6 @@ const OptionsBox = styled.div`
 
 const BoardBox = styled.div`
   padding-top: 32px;
-  background-color: ${BackgroundColor};
-  color: white;
-  min-height: 100%;
-  font-family: "Varela Round", sans-serif !important;
-  font-weight: 400;
-  color: ${DarkFontColor};
 `;
 
 export default function Board() {
@@ -45,7 +26,6 @@ export default function Board() {
 
   return (
     <>
-      {tab}
       <BoardBox>
         <Grid>
           <WordInfoBox>
