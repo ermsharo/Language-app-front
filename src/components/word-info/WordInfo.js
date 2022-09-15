@@ -39,30 +39,15 @@ const AudioDisplay = styled.div`
   padding: 16px;
 `;
 
-const ButtonDisplay = styled.div`
-  display: flex;
-  gap: 16px;
-  padding: 16px;
-`;
-
-const MeaningTitle = styled.div`
-  font-size: 24px;
-  padding: 8px;
-`;
-
-const MeaningText = styled.div`
-  padding: 8px;
-`;
 export default function WordInfo({
   selectedWord,
-  setSelectedWord,
-  wordsRequested,
-  setWordsRequested,
+  wordsRequests,
+  setWordsRequests,
 }) {
   const [{ data, isLoading, isError }, doFetch] = GetWordInfo(
     selectedWord,
-    setWordsRequested,
-    wordsRequested
+    wordsRequests,
+    setWordsRequests
   );
 
   useEffect(() => {

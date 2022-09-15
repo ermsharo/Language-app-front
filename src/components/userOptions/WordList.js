@@ -20,8 +20,6 @@ const OptionButton = styled.div`
 
 export default function WordList({
   setSelectedWord,
-  wordList,
-  setwordList,
   page,
   setPage,
   favorites,
@@ -33,20 +31,7 @@ export default function WordList({
     setPage(value);
   };
 
-  const initializeFavorites = (item, word_id, isFavorited) => {
-    let requestObj = {
-      word: item,
-      word_id: word_id,
-      isFavorited: isFavorited,
-    };
-    console.log("favorites", favorites);
-
-    setFavorites((favorites) => [requestObj, ...favorites]);
-  };
-
   const [{ data, isLoading, isError }, changePage] = GetWordList(
-    setwordList,
-    wordList,
     favorites,
     setFavorites
   );

@@ -19,7 +19,7 @@ const BoardBox = styled.div`
 
 export default function Board() {
   const [selectedWord, setSelectedWord] = useState(null);
-  const [wordsRequested, setWordsRequested] = useState([]);
+  const [wordsRequests, setWordsRequests] = useState({});
 
   let { tab } = useParams();
 
@@ -32,8 +32,8 @@ export default function Board() {
               <WordInfo
                 selectedWord={selectedWord}
                 setSelectedWord={setSelectedWord}
-                wordsRequested={wordsRequested}
-                setWordsRequested={setWordsRequested}
+                wordsRequests={wordsRequests}
+                setWordsRequests={setWordsRequests}
               />
             )}
           </WordInfoBox>

@@ -21,7 +21,7 @@ const TabsBox = styled.div`
 export default function UserOptions({ setSelectedWord, tab }) {
   const [wordHistory, setHistory] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [wordList, setwordList] = useState([]);
+  const [cachedWordPages, setcachedWordPages] = useState([]);
 
   let tables = ["words", "history", "favorites"];
 
@@ -54,8 +54,6 @@ export default function UserOptions({ setSelectedWord, tab }) {
           page={page}
           setPage={setPage}
           setSelectedWord={setSelectedWord}
-          wordList={wordList}
-          setwordList={setwordList}
           favorites={favorites}
           setFavorites={setFavorites}
         />
