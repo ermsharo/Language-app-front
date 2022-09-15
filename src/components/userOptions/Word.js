@@ -46,31 +46,14 @@ const SecoundButton = styled.button`
   width: 40px;
 `;
 
-export default function Word({
-  item,
-  index,
-  setSelectedWord,
-  favorites,
-  setFavorites,
-}) {
+export default function Word({ item, index, setSelectedWord }) {
   const elementIsFavorited = (word) => {
-    const result = favorites.find((favs) => favs.word === word);
-
-    if (result !== undefined) {
-      return result.isFavorited;
-    }
     return false;
-  };
 
-  const changeFavoriteWordArray = (array, word, isFavorited) => {
-    const newArr = array.map((favObj) => {
-      if (favObj.word === word) {
-        return { ...favObj, isFavorited: isFavorited };
-      }
-      return favObj;
-    });
-    console.log("NEW ARRAY ->", newArr);
-    return newArr;
+    // if (result !== undefined) {
+    //   return result.isFavorited;
+    // }
+    // return false;
   };
 
   useEffect(() => {
@@ -90,17 +73,9 @@ export default function Word({
         </FirstButton>
         <SecoundButton>
           {elementIsFavorited(item) ? (
-            <AiFillStar
-              onClick={() => {
-                changeFavoriteWordArray(favorites, item, false);
-              }}
-            />
+            <AiFillStar onClick={() => {}} />
           ) : (
-            <AiOutlineStar
-              onClick={() => {
-                changeFavoriteWordArray(favorites, item, true);
-              }}
-            />
+            <AiOutlineStar onClick={() => {}} />
           )}
         </SecoundButton>
       </WordBox>

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import React, { useEffect } from "react";
 import ReactAudioPlayer from "react-audio-player";

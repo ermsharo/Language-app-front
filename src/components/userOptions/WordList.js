@@ -24,6 +24,8 @@ export default function WordList({
   setPage,
   favorites,
   setFavorites,
+  cachedWordPages,
+  setcachedWordPages,
 }) {
   const navigate = useNavigate();
 
@@ -32,8 +34,8 @@ export default function WordList({
   };
 
   const [{ data, isLoading, isError }, changePage] = GetWordList(
-    favorites,
-    setFavorites
+    cachedWordPages,
+    setcachedWordPages
   );
 
   useEffect(() => {

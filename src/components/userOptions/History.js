@@ -39,7 +39,7 @@ export default function History({
   }, [historyPage]);
 
   const handleChange = (event, value) => {
-    setFavorites(value);
+    setHistorypage(value);
   };
 
   if (isError) {

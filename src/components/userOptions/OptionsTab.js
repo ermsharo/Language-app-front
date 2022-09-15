@@ -19,15 +19,13 @@ const TabsBox = styled.div`
 `;
 
 export default function UserOptions({ setSelectedWord, tab }) {
-  const [wordHistory, setHistory] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [cachedWordPages, setcachedWordPages] = useState([]);
+  const [cachedWordPages, setcachedWordPages] = useState({});
 
   let tables = ["words", "history", "favorites"];
 
   const verifyTable = (tab) => {
     let index = tables.indexOf(tab);
-    console.log("index", index);
     if (index === -1) return 0;
     return index;
   };
@@ -56,6 +54,8 @@ export default function UserOptions({ setSelectedWord, tab }) {
           setSelectedWord={setSelectedWord}
           favorites={favorites}
           setFavorites={setFavorites}
+          cachedWordPages={cachedWordPages}
+          setcachedWordPages={setcachedWordPages}
         />
       )}
 

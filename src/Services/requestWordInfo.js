@@ -40,7 +40,6 @@ export const GetWordInfo = (selectedWord, wordsRequests, setWordsRequests) => {
     } else {
       fetchData();
     }
-
   }, [word]);
 
   return [{ data, isLoading, isError }, setWord];
