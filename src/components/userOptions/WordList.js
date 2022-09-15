@@ -1,18 +1,10 @@
 import styled from "styled-components";
 import Word from "./Word";
 import { GetWordList } from "../../Services/requestWords";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
 import Loading from "../Loading/Loading";
-import {
-  HeaderColor,
-  DarkFontColor,
-  LightFontColor,
-  BackgroundColor,
-  SecundaryBackgroundColor,
-} from "./../../Styles/StyleFunctions";
 
 const WordListGrid = styled.div`
   display: grid;

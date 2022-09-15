@@ -2,20 +2,13 @@ import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import { Grid } from "../../Styles/GridSystem";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 import Logo from "../logo/logo";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Feedback from "./../Feedback/FeedBack";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   HeaderColor,
-  DarkFontColor,
-  LightFontColor,
-  BackgroundColor,
-  SecundaryBackgroundColor,
-  GenerateWordColor,
 } from "./../../Styles/StyleFunctions";
 
 const BoardBox = styled.div`
@@ -32,7 +25,6 @@ const LoginBox = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   gap: 16px;
-
 
   input {
     font-family: "Varela Round", sans-serif;
@@ -66,7 +58,6 @@ const CreateAccountButton = styled.div`
   &:hover {
     opacity: 0.7;
   }
-
 `;
 
 export default function SingIn() {

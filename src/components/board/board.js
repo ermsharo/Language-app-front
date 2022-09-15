@@ -3,7 +3,6 @@ import styled from "styled-components";
 import WordInfo from "../word-info/WordInfo";
 import OptionsTabs from "./../userOptions/OptionsTab";
 import React, { useState } from "react";
-import { DarkFontColor, BackgroundColor } from "./../../Styles/StyleFunctions";
 import { useParams } from "react-router-dom";
 
 const WordInfoBox = styled.div`
