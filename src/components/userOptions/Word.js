@@ -1,13 +1,9 @@
 import styled from "styled-components";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { useEffect } from "react";
+import { useState } from "react";
 import { GenerateWordColor } from "./../../Styles/StyleFunctions";
 import {
-  HeaderColor,
   DarkFontColor,
-  LightFontColor,
-  BackgroundColor,
-  SecundaryBackgroundColor,
 } from "./../../Styles/StyleFunctions";
 
 const WordBox = styled.div`
@@ -46,20 +42,30 @@ const SecoundButton = styled.button`
   width: 40px;
 `;
 
-export default function Word({ item, index, setSelectedWord }) {
-  const elementIsFavorited = (word) => {
-    return false;
-
-    // if (result !== undefined) {
-    //   return result.isFavorited;
-    // }
-    // return false;
+export default function Word({
+  item,
+  index,
+  setSelectedWord,
+  favorites,
+  setFavorites,
+}) {
+  const changeWordFavoritedStatus = (word, status) => {
+    let ref = favorites;
+    ref[word] = status;
+    setFavorites(ref);
+    setIsFavorited(status);
   };
 
-  useEffect(() => {
-    //console.log("Favorites", favorites);
-    // console.log("favorites", favorites);
-  }, [item]);
+  const elementIsFavorited = (word) => {
+    if (favorites[word] !== undefined) {
+      if (favorites[word]) return true;
+      return false;
+    }
+    //changeWordFavoritedStatus(word, false);
+    return false;
+  };
+
+  const [isFavorited, setIsFavorited] = useState(elementIsFavorited(item));
 
   return (
     <>
@@ -72,10 +78,23 @@ export default function Word({ item, index, setSelectedWord }) {
           {item}
         </FirstButton>
         <SecoundButton>
-          {elementIsFavorited(item) ? (
-            <AiFillStar onClick={() => {}} />
+          {isFavorited ? (
+            <div
+              onClick={() => {
+                changeWordFavoritedStatus(item, false);
+              }}
+            >
+              <AiFillStar />
+            </div>
           ) : (
-            <AiOutlineStar onClick={() => {}} />
+            <div
+              onClick={() => {
+                changeWordFavoritedStatus(item, true);
+              }}
+            >
+              {" "}
+              <AiOutlineStar />
+            </div>
           )}
         </SecoundButton>
       </WordBox>

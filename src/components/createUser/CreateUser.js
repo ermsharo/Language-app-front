@@ -61,6 +61,10 @@ export default function CreateUser() {
   });
 
   const [requestAwnser, setRequestAwnser] = useState(null);
+  const [validationErrors, setValidationErrors] = useState({
+    isFormValid: true,
+    errorArray: [],
+  });
 
   function handleChange(evt) {
     const value = evt.target.value;
@@ -70,17 +74,61 @@ export default function CreateUser() {
     });
   }
 
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  const validadeInputs = () => {
+    console.log("Form inputs", formInputs);
+    let formErrors = [];
+    if (!formInputs.user) {
+      formErrors.push("You need to fill the user field ");
+    }
+    if (!formInputs.password) {
+      formErrors.push("You need to fill the password field ");
+    }
+    if (!formInputs.passwordCheck) {
+      formErrors.push("You need to fill the password check field ");
+    }
+    if (!formInputs.email) {
+      formErrors.push("You need to fill the email field ");
+    }
+
+    if (!isValidEmail(formInputs.email)) {
+      formErrors.push("Invalid email format");
+    }
+
+    if (
+      formInputs.password &&
+      formInputs.passwordCheck &&
+      formInputs.password !== formInputs.passwordCheck
+    ) {
+      formErrors.push("Password check must be equals to Password ");
+    }
+
+    if (formErrors.length === 0) {
+      setValidationErrors({ isFormValid: true, errorArray: [] });
+    }
+    setValidationErrors({ isFormValid: false, errorArray: formErrors });
+  };
+
   const createUser = async () => {
-    await axios
-      .post("http://localhost:5000/auth/singup", {
-        formInputs,
-      })
-      .then((response) => {
-        setRequestAwnser(response.data);
-      })
-      .catch((error) => {
-        console.log(error.toJSON());
-      });
+    console.log(validadeInputs());
+
+    let isValid = validadeInputs();
+
+    if (validationErrors.isFormValid) {
+      await axios
+        .post("http://localhost:5000/auth/singup", {
+          formInputs,
+        })
+        .then((response) => {
+          setRequestAwnser(response.data);
+        })
+        .catch((error) => {
+          console.log(error.toJSON());
+        });
+    }
   };
 
   return (
@@ -125,7 +173,14 @@ export default function CreateUser() {
               value={formInputs.passwordCheck}
               onChange={handleChange}
             />
-            <Feedback status="aaa" success={true} display={true} />
+
+            {!validationErrors.isFormValid && (
+              <Feedback
+                status={validationErrors.errorArray[0]}
+                success={false}
+                display={true}
+              />
+            )}
 
             <Button
               onClick={() => {

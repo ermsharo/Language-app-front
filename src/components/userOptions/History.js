@@ -50,6 +50,7 @@ export default function History({
   if (data)
     return (
       <div>
+        {JSON.stringify(data)}
         <WordListGrid>
           {data.results !== undefined &&
             data.results.map((item, index) => (
