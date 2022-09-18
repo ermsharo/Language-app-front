@@ -6,11 +6,11 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const WordInfoBox = styled.div`
-  grid-column: 1/3;
+  grid-column: 1/4;
 `;
 
 const OptionsBox = styled.div`
-  grid-column: 3/8;
+  grid-column: 4/9;
 `;
 
 const BoardBox = styled.div`
