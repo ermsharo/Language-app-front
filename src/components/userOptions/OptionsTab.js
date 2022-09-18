@@ -7,7 +7,6 @@ import Tab from "./Tab";
 
 const TabsStyle = styled.div`
   color: white;
-  padding-bottom: 16px;
 `;
 
 const TabsBox = styled.div`
@@ -15,9 +14,13 @@ const TabsBox = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 4px;
-  margin-bottom: 24px;
 `;
 
+const WordListsStructure = styled.div`
+  background-color: #fbfbf8;
+  padding: 32px;
+  padding-top: 64px;
+`;
 export default function UserOptions({ setSelectedWord, tab }) {
   const [favorites, setFavorites] = useState({});
   const [cachedWordPages, setcachedWordPages] = useState({});
@@ -47,39 +50,41 @@ export default function UserOptions({ setSelectedWord, tab }) {
           <Tab isSelected={verifyTable(tab) === 2} content={tables[2]} />
         </TabsBox>
       </TabsStyle>
-      {verifyTable(tab) === 0 && (
-        <WordList
-          page={page}
-          setPage={setPage}
-          setSelectedWord={setSelectedWord}
-          favorites={favorites}
-          setFavorites={setFavorites}
-          cachedWordPages={cachedWordPages}
-          setcachedWordPages={setcachedWordPages}
-        />
-      )}
+      <WordListsStructure>
+        {verifyTable(tab) === 0 && (
+          <WordList
+            page={page}
+            setPage={setPage}
+            setSelectedWord={setSelectedWord}
+            favorites={favorites}
+            setFavorites={setFavorites}
+            cachedWordPages={cachedWordPages}
+            setcachedWordPages={setcachedWordPages}
+          />
+        )}
 
-      {verifyTable(tab) === 1 && (
-        <History
-          historyPage={historyPage}
-          setHistorypage={setHistorypage}
-          setSelectedWord={setSelectedWord}
-          favorites={favorites}
-          setFavorites={setFavorites}
-        />
-      )}
+        {verifyTable(tab) === 1 && (
+          <History
+            historyPage={historyPage}
+            setHistorypage={setHistorypage}
+            setSelectedWord={setSelectedWord}
+            favorites={favorites}
+            setFavorites={setFavorites}
+          />
+        )}
 
-      {verifyTable(tab) === 2 && (
-        <Favorites
-          page={page}
-          setPage={setPage}
-          numberOfPages={numberOfPages}
-          setNumberOfPages={setNumberOfPages}
-          setSelectedWord={setSelectedWord}
-          favorites={favorites}
-          setFavorites={setFavorites}
-        />
-      )}
+        {verifyTable(tab) === 2 && (
+          <Favorites
+            page={page}
+            setPage={setPage}
+            numberOfPages={numberOfPages}
+            setNumberOfPages={setNumberOfPages}
+            setSelectedWord={setSelectedWord}
+            favorites={favorites}
+            setFavorites={setFavorites}
+          />
+        )}
+      </WordListsStructure>
     </>
   );
 }

@@ -5,9 +5,22 @@ import { GetWordInfo } from "./../../Services/requestWordInfo";
 import Feedback from "./../Feedback/FeedBack";
 import { GenerateWordColor } from "./../../Styles/StyleFunctions";
 import MeaningDisplay from "./MeaningsDisplay";
-import { DarkFontColor } from "./../../Styles/StyleFunctions";
+import {
+  DarkFontColor,
+  SecundaryBackgroundColor,
+  HeaderColor,
+  LightFontColor,
+} from "./../../Styles/StyleFunctions";
 
 import Loading from "../Loading/Loading";
+
+const WordDisplayBox = styled.div`
+  background-color: ${HeaderColor};
+  padding: 16px;
+  color: ${LightFontColor};
+  border-radius: 10px;
+`;
+
 const WordDisplay = styled.div`
   width: 100%;
   text-align: center;
@@ -92,7 +105,7 @@ export default function WordInfo({
     getValuesByKey(data);
 
     return (
-      <div>
+      <WordDisplayBox>
         <WordDisplay
           style={{ backgroundColor: GenerateWordColor(wordObj?.word) }}
         >
@@ -110,7 +123,7 @@ export default function WordInfo({
           )}
         </AudioDisplay>
         <MeaningDisplay Meanings={wordObj?.meanings} />
-      </div>
+      </WordDisplayBox>
     );
   }
 }

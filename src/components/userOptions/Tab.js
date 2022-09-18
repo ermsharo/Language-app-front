@@ -14,7 +14,8 @@ const TabBox = styled.div`
   font-weight: bolder;
   text-transform: capitalize;
   cursor: pointer;
-  margin-left: -8px;
+
+  background-color: #fbfbf8;
 `;
 
 export default function Tab({ isSelected, content }) {
