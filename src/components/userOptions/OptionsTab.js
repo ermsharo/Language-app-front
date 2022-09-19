@@ -75,10 +75,8 @@ export default function UserOptions({ setSelectedWord, tab }) {
 
         {verifyTable(tab) === 2 && (
           <Favorites
-            page={page}
-            setPage={setPage}
-            numberOfPages={numberOfPages}
-            setNumberOfPages={setNumberOfPages}
+            favoritesPage={favoritesPage}
+            setFavoritespage={setFavoritespage}
             setSelectedWord={setSelectedWord}
             favorites={favorites}
             setFavorites={setFavorites}

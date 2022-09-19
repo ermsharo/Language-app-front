@@ -29,10 +29,7 @@ export default function History({
 
   const fetchMoreData = () => {};
 
-  const [{ data, isLoading, isError }, changePage] = GetHistoryList(
-    favorites,
-    setFavorites
-  );
+  const [{ data, isLoading, isError }, changePage] = GetHistoryList();
 
   useEffect(() => {
     changePage(historyPage);

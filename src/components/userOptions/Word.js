@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { GenerateWordColor } from "./../../Styles/StyleFunctions";
 import {
   DarkFontColor,
@@ -66,6 +66,11 @@ export default function Word({
   };
 
   const [isFavorited, setIsFavorited] = useState(elementIsFavorited(item));
+
+  useEffect(() => {
+    console.log("Favorites updates");
+  }, [favorites, setFavorites]);
+
 
   return (
     <>

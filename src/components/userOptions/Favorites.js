@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import Word from "./Word";
-import { GetHistoryList } from "../../Services/requestHistory";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
-import Pagination from "@mui/material/Pagination";
-import Loading from "../Loading/Loading";
 
-export default function Favorites({ favorites, setFavorites, setSelectedWord }) {
+export default function Favorites({
+  favorites,
+  setFavorites,
+  setSelectedWord,
+}) {
   const WordListGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -20,12 +19,27 @@ export default function Favorites({ favorites, setFavorites, setSelectedWord }) 
     justify-content: center;
   `;
 
+  let filterValues = () => {
+    const propertyNames = Object.keys(favorites);
+
+    console.log(propertyNames);
+
+    let valideValues = [];
+    for (let i = 0; i < propertyNames.length; i++) {
+      console.log(propertyNames[i]);
+      if (favorites[propertyNames[i]]) valideValues.push(propertyNames[i]);
+    }
+    return valideValues;
+  };
+
+ 
+
   return (
     <div>
-      {JSON.stringify(Object.keys(favorites))}
+
       <WordListGrid>
-        {Object.entries(favorites) !== undefined &&
-          Object.entries(favorites).map((item, index) => (
+        {filterValues() !== undefined &&
+          filterValues().map((item, index) => (
             <Word
               index={index}
               item={item}
