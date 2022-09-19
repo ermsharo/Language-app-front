@@ -3,24 +3,65 @@ import styled from "styled-components";
 import React from "react";
 import { HeaderColor } from "./../../Styles/StyleFunctions";
 import WordInfo from "./../word-info/WordInfo";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 const DrawerBox = styled.div`
   background-color: ${HeaderColor};
-  width: 100%;
+  width: 100vw;
   height: 100vh;
 `;
 
-export default function wordInfoDrawer(
+const CloseButton = styled.div`
+  background-color: ${HeaderColor};
+  font-family: "Roboto Slab", serif;
+
+  cursor: pointer;
+  color: white;
+  font-size: 32px;
+  text-align: right;
+  padding: 32px;
+  line-height: 32px;
+  display: flex;
+`;
+
+const CloseButtonLine = styled.div`
+  display: flex;
+  justify-content: end;
+`;
+
+const WordInfoDrawerDisplay = styled.div`
+  display: block;
+  @media (min-width: 992px) {
+    display: none;
+
+  }
+`;
+
+
+
+export default function wordInfoDrawer({
   infoDrawerOpen,
   setInfoDrawerOpen,
   selectedWord,
   setSelectedWord,
   wordsRequests,
-  setWordsRequests
-) {
+  setWordsRequests,
+}) {
   return (
-    <div>
+    <WordInfoDrawerDisplay>
       <Drawer open={infoDrawerOpen} hideBackdrop={true}>
         <DrawerBox>
+          <CloseButtonLine>
+            {" "}
+            <CloseButton
+              onClick={() => {
+                setInfoDrawerOpen(false);
+              }}
+            >
+              {" "}
+              <AiOutlineArrowLeft />
+              &nbsp; Comeback
+            </CloseButton>
+          </CloseButtonLine>
           {selectedWord != null && (
             <WordInfo
               selectedWord={selectedWord}
@@ -29,15 +70,8 @@ export default function wordInfoDrawer(
               setWordsRequests={setWordsRequests}
             />
           )}
-          <div
-            onClick={() => {
-              setInfoDrawerOpen(false);
-            }}
-          >
-            Close this{" "}
-          </div>
         </DrawerBox>
       </Drawer>
-    </div>
+    </WordInfoDrawerDisplay>
   );
 }

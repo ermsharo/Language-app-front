@@ -14,6 +14,7 @@ const WordInfoBox = styled.div`
   }
 `;
 
+
 const OptionsBox = styled.div`
   grid-column: 1/9;
 
@@ -55,7 +56,7 @@ export default function Board() {
             />
           </OptionsBox>
         </Grid>
-        <>
+
           <WordInfoDrawer
             infoDrawerOpen={infoDrawerOpen}
             setInfoDrawerOpen={setInfoDrawerOpen}
@@ -64,7 +65,7 @@ export default function Board() {
             wordsRequests={wordsRequests}
             setWordsRequests={setWordsRequests}
           />
-        </>
+
       </BoardBox>
     </>
   );
