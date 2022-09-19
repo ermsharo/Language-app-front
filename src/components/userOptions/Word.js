@@ -3,6 +3,8 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useState } from "react";
 import { GenerateWordColor } from "./../../Styles/StyleFunctions";
 import { DarkFontColor } from "./../../Styles/StyleFunctions";
+import { favoriteWord } from "./../../Services/favoriteWord";
+import { unfavoriteWord } from "./../../Services/unfavoriteWord";
 
 const WordBox = styled.div`
   padding: 16px;
@@ -61,11 +63,20 @@ export default function Word({
   setFavorites,
   setFavoriteList,
 }) {
-  const changeWordFavoritedStatus = (word, status) => {
+  const changeWordFavoritedStatus = async (word, status) => {
     let ref = favorites;
     ref[word] = status;
     setFavorites(ref);
     setIsFavorited(status);
+
+    if (status) {
+      //console.log("Add to favorites word", word);
+      let response = await favoriteWord(word);
+      /// console.log("Add to favorites word", response);
+    } else {
+      await unfavoriteWord(word);
+    }
+
     setFavoriteList(filterValues(ref));
   };
 

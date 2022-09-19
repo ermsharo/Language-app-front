@@ -8,10 +8,16 @@ import Loading from "../Loading/Loading";
 
 const WordListGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
-`;
+  grid-template-columns: 1fr;
+  grid-gap: 24px;
+  @media (min-width: 576px) {
+    grid-template-columns: 1fr 1fr;
+  }
 
+  @media (min-width: 1300px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+`;
 const OptionButton = styled.div`
   padding: 32px;
   display: flex;
