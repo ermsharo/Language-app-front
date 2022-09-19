@@ -48,8 +48,10 @@ export default function Board() {
             )}
           </WordInfoBox>
           <OptionsBox>
-            <OptionsTabs setSelectedWord={setSelectedWord} tab={tab}
-            setInfoDrawerOpen = {setInfoDrawerOpen}
+            <OptionsTabs
+              setSelectedWord={setSelectedWord}
+              tab={tab}
+              setInfoDrawerOpen={setInfoDrawerOpen}
             />
           </OptionsBox>
         </Grid>

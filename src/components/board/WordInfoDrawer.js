@@ -19,7 +19,7 @@ export default function wordInfoDrawer(
 ) {
   return (
     <div>
-      <Drawer open={infoDrawerOpen} hideBackdrop={false}>
+      <Drawer open={infoDrawerOpen} hideBackdrop={true}>
         <DrawerBox>
           {selectedWord != null && (
             <WordInfo

@@ -21,7 +21,11 @@ const WordListsStructure = styled.div`
   padding: 32px;
   padding-top: 64px;
 `;
-export default function UserOptions({ setSelectedWord, tab , setInfoDrawerOpen }) {
+export default function UserOptions({
+  setSelectedWord,
+  tab,
+  setInfoDrawerOpen,
+}) {
   const [favorites, setFavorites] = useState({});
   const [cachedWordPages, setcachedWordPages] = useState({});
 
@@ -38,7 +42,6 @@ export default function UserOptions({ setSelectedWord, tab , setInfoDrawerOpen }
   const [historyPage, setHistorypage] = useState(0);
   //page from favorites
   const [favoritesPage, setFavoritespage] = useState(0);
-
 
   return (
     <>

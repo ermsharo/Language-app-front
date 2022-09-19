@@ -30,10 +30,9 @@ export default function History({
   setSelectedWord,
   favorites,
   setFavorites,
-  setInfoDrawerOpen
+  setInfoDrawerOpen,
 }) {
   const navigate = useNavigate();
-
 
   const [{ data, isLoading, isError }, changePage] = GetHistoryList();
 
