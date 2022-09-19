@@ -14,7 +14,6 @@ const WordInfoBox = styled.div`
   }
 `;
 
-
 const OptionsBox = styled.div`
   grid-column: 1/9;
 
@@ -25,6 +24,25 @@ const OptionsBox = styled.div`
 
 const BoardBox = styled.div`
   padding-top: 32px;
+`;
+
+const WordInfoDrawerDisplay = styled.div`
+  display: block;
+  background-color: blue;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+
+  @media (min-width: 992px) {
+    display: none !important;
+    visibility: hidden;
+    div {
+      display: none !important;
+      visibility: hidden;
+    }
+  }
 `;
 
 export default function Board() {
@@ -56,7 +74,7 @@ export default function Board() {
             />
           </OptionsBox>
         </Grid>
-
+        <WordInfoDrawerDisplay>
           <WordInfoDrawer
             infoDrawerOpen={infoDrawerOpen}
             setInfoDrawerOpen={setInfoDrawerOpen}
@@ -65,7 +83,7 @@ export default function Board() {
             wordsRequests={wordsRequests}
             setWordsRequests={setWordsRequests}
           />
-
+        </WordInfoDrawerDisplay>
       </BoardBox>
     </>
   );

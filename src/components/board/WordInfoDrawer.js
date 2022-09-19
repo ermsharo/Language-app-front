@@ -28,19 +28,6 @@ const CloseButtonLine = styled.div`
   justify-content: end;
 `;
 
-const WordInfoDrawerDisplay = styled.div`
-  display: block;
-  @media (min-width: 992px) {
-    display: none;
-    div{
-      display: none;
-    }
-
-  }
-`;
-
-
-
 export default function wordInfoDrawer({
   infoDrawerOpen,
   setInfoDrawerOpen,
@@ -50,31 +37,27 @@ export default function wordInfoDrawer({
   setWordsRequests,
 }) {
   return (
-    <WordInfoDrawerDisplay>
-      <Drawer open={infoDrawerOpen} hideBackdrop={true}>
-        <DrawerBox>
-          <CloseButtonLine>
-            {" "}
-            <CloseButton
-              onClick={() => {
-                setInfoDrawerOpen(false);
-              }}
-            >
-              {" "}
-              <AiOutlineArrowLeft />
-              &nbsp; Comeback
-            </CloseButton>
-          </CloseButtonLine>
-          {selectedWord != null && (
-            <WordInfo
-              selectedWord={selectedWord}
-              setSelectedWord={setSelectedWord}
-              wordsRequests={wordsRequests}
-              setWordsRequests={setWordsRequests}
-            />
-          )}
-        </DrawerBox>
-      </Drawer>
-    </WordInfoDrawerDisplay>
+    <Drawer open={infoDrawerOpen} hideBackdrop={true}>
+      <DrawerBox>
+        <CloseButtonLine>
+          <CloseButton
+            onClick={() => {
+              setInfoDrawerOpen(false);
+            }}
+          >
+            <AiOutlineArrowLeft />
+            &nbsp; Comeback
+          </CloseButton>
+        </CloseButtonLine>
+        {selectedWord != null && (
+          <WordInfo
+            selectedWord={selectedWord}
+            setSelectedWord={setSelectedWord}
+            wordsRequests={wordsRequests}
+            setWordsRequests={setWordsRequests}
+          />
+        )}
+      </DrawerBox>
+    </Drawer>
   );
 }

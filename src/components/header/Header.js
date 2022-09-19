@@ -2,9 +2,7 @@ import * as React from "react";
 import LoginAcess from "./LoginAcess";
 import styled from "styled-components";
 import Logo from "./../logo/logo";
-import {
-  HeaderColor,
-} from "./../../Styles/StyleFunctions";
+import { HeaderColor } from "./../../Styles/StyleFunctions";
 import { useNavigate } from "react-router-dom";
 
 const HeaderBox = styled.div`
