@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 
 const DisplayInfo = styled.div`
   font-family: "Varela Round", sans-serif;

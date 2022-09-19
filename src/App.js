@@ -6,12 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import {
-  HeaderColor,
   DarkFontColor,
-  LightFontColor,
   BackgroundColor,
-  SecundaryBackgroundColor,
-  GenerateWordColor,
 } from "./Styles/StyleFunctions.js";
 
 const AppBox = styled.div`

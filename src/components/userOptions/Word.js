@@ -72,7 +72,7 @@ export default function Word({
 
     if (status) {
       //console.log("Add to favorites word", word);
-      let response = await favoriteWord(word);
+      //let response = await favoriteWord(word);
       /// console.log("Add to favorites word", response);
     } else {
       await unfavoriteWord(word);

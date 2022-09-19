@@ -1,7 +1,4 @@
-import { Grid } from "../../Styles/GridSystem";
 import styled from "styled-components";
-import WordInfo from "../word-info/WordInfo";
-import OptionsTabs from "./../userOptions/OptionsTab";
 
 const LogoBox = styled.div`
   font-family: "Sedgwick Ave", sans-serif;

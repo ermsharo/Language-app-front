@@ -4,19 +4,15 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
 import { isLogged, getUserInfo } from "../../Services/getLoginStatus";
-import { Typography } from "@mui/material";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
 import { logout } from "../../Services/getLoginStatus";
 import {
   HeaderColor,
   DarkFontColor,
   LightFontColor,
-  BackgroundColor,
-  SecundaryBackgroundColor,
   GenerateWordColor,
 } from "./../../Styles/StyleFunctions";
 
@@ -67,9 +63,6 @@ const UserTitle = styled.div`
   font-size: 20px;
 `;
 
-const BoardBox = styled.div`
-  padding-top: 32px;
-`;
 
 export default function LoginAccess() {
   const navigate = useNavigate();
