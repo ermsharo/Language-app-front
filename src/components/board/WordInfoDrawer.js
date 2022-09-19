@@ -32,6 +32,9 @@ const WordInfoDrawerDisplay = styled.div`
   display: block;
   @media (min-width: 992px) {
     display: none;
+    div{
+      display: none;
+    }
 
   }
 `;
