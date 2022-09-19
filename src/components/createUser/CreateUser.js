@@ -6,14 +6,7 @@ import Logo from "../logo/logo";
 import React, { useState } from "react";
 import Feedback from "./../Feedback/FeedBack";
 import axios from "axios";
-import {
-  HeaderColor,
-  DarkFontColor,
-  LightFontColor,
-  BackgroundColor,
-  SecundaryBackgroundColor,
-  GenerateWordColor,
-} from "./../../Styles/StyleFunctions";
+import { HeaderColor } from "./../../Styles/StyleFunctions";
 
 const BoardBox = styled.div`
   padding-top: 32px;
@@ -114,8 +107,6 @@ export default function CreateUser() {
 
   const createUser = async () => {
     console.log(validadeInputs());
-
-    let isValid = validadeInputs();
 
     if (validationErrors.isFormValid) {
       await axios

@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { useState , useEffect } from "react";
+import { useState } from "react";
 import { GenerateWordColor } from "./../../Styles/StyleFunctions";
-import {
-  DarkFontColor,
-} from "./../../Styles/StyleFunctions";
+import { DarkFontColor } from "./../../Styles/StyleFunctions";
 
 const WordBox = styled.div`
   padding: 16px;
@@ -42,18 +40,33 @@ const SecoundButton = styled.button`
   width: 40px;
 `;
 
+let filterValues = (values) => {
+  const propertyNames = Object.keys(values);
+
+  console.log(propertyNames);
+
+  let valideValues = [];
+  for (let i = 0; i < propertyNames.length; i++) {
+    console.log(propertyNames[i]);
+    if (values[propertyNames[i]]) valideValues.push(propertyNames[i]);
+  }
+  return valideValues;
+};
+
 export default function Word({
   item,
   index,
   setSelectedWord,
   favorites,
   setFavorites,
+  setFavoriteList,
 }) {
   const changeWordFavoritedStatus = (word, status) => {
     let ref = favorites;
     ref[word] = status;
     setFavorites(ref);
     setIsFavorited(status);
+    setFavoriteList(filterValues(ref));
   };
 
   const elementIsFavorited = (word) => {
@@ -61,16 +74,10 @@ export default function Word({
       if (favorites[word]) return true;
       return false;
     }
-    //changeWordFavoritedStatus(word, false);
     return false;
   };
 
   const [isFavorited, setIsFavorited] = useState(elementIsFavorited(item));
-
-  useEffect(() => {
-    console.log("Favorites updates");
-  }, [favorites, setFavorites]);
-
 
   return (
     <>

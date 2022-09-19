@@ -7,7 +7,6 @@ import { GenerateWordColor } from "./../../Styles/StyleFunctions";
 import MeaningDisplay from "./MeaningsDisplay";
 import {
   DarkFontColor,
-  SecundaryBackgroundColor,
   HeaderColor,
   LightFontColor,
 } from "./../../Styles/StyleFunctions";

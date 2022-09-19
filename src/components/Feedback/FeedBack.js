@@ -1,6 +1,4 @@
-import styled from "styled-components";
 import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 
 export default function Feedback({ status, success, display }) {
   if (!display) return <></>;

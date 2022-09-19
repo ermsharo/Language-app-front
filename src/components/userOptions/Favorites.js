@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Word from "./Word";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Favorites({
   favorites,
@@ -32,20 +32,24 @@ export default function Favorites({
     return valideValues;
   };
 
- 
+  const [favoriteList, setFavoriteList] = useState(filterValues(favorites));
+
+  useEffect(() => {
+    console.log("Favorites updates");
+  }, [favoriteList, setFavoriteList]);
 
   return (
     <div>
-
       <WordListGrid>
-        {filterValues() !== undefined &&
-          filterValues().map((item, index) => (
+        {favoriteList !== undefined &&
+          favoriteList.map((item, index) => (
             <Word
               index={index}
               item={item}
               setSelectedWord={setSelectedWord}
               favorites={favorites}
               setFavorites={setFavorites}
+              setFavoriteList={setFavoriteList}
             />
           ))}
       </WordListGrid>
