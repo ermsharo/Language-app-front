@@ -6,6 +6,7 @@ export default function Favorites({
   favorites,
   setFavorites,
   setSelectedWord,
+  setInfoDrawerOpen
 }) {
   const WordListGrid = styled.div`
     display: grid;
@@ -57,6 +58,7 @@ export default function Favorites({
               favorites={favorites}
               setFavorites={setFavorites}
               setFavoriteList={setFavoriteList}
+              setInfoDrawerOpen={setInfoDrawerOpen}
             />
           ))}
       </WordListGrid>

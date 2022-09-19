@@ -62,6 +62,7 @@ export default function Word({
   favorites,
   setFavorites,
   setFavoriteList,
+  setInfoDrawerOpen
 }) {
   const changeWordFavoritedStatus = async (word, status) => {
     let ref = favorites;
@@ -96,6 +97,7 @@ export default function Word({
         <FirstButton
           onClick={() => {
             setSelectedWord(item);
+            setInfoDrawerOpen(true);
           }}
         >
           {item}

@@ -32,6 +32,7 @@ export default function WordList({
   setFavorites,
   cachedWordPages,
   setcachedWordPages,
+  setInfoDrawerOpen,
 }) {
   const navigate = useNavigate();
 
@@ -66,6 +67,7 @@ export default function WordList({
                 setSelectedWord={setSelectedWord}
                 favorites={favorites}
                 setFavorites={setFavorites}
+                setInfoDrawerOpen={setInfoDrawerOpen}
               />
             ))}
         </WordListGrid>

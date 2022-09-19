@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Word from "./Word";
 import { GetHistoryList } from "../../Services/requestHistory";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
@@ -31,10 +30,10 @@ export default function History({
   setSelectedWord,
   favorites,
   setFavorites,
+  setInfoDrawerOpen
 }) {
   const navigate = useNavigate();
 
-  const fetchMoreData = () => {};
 
   const [{ data, isLoading, isError }, changePage] = GetHistoryList();
 
@@ -63,6 +62,7 @@ export default function History({
                 setSelectedWord={setSelectedWord}
                 favorites={favorites}
                 setFavorites={setFavorites}
+                setInfoDrawerOpen={setInfoDrawerOpen}
               />
             ))}
         </WordListGrid>

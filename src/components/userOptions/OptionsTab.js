@@ -21,7 +21,7 @@ const WordListsStructure = styled.div`
   padding: 32px;
   padding-top: 64px;
 `;
-export default function UserOptions({ setSelectedWord, tab }) {
+export default function UserOptions({ setSelectedWord, tab , setInfoDrawerOpen }) {
   const [favorites, setFavorites] = useState({});
   const [cachedWordPages, setcachedWordPages] = useState({});
 
@@ -39,7 +39,6 @@ export default function UserOptions({ setSelectedWord, tab }) {
   //page from favorites
   const [favoritesPage, setFavoritespage] = useState(0);
 
-  const [numberOfPages, setNumberOfPages] = useState(0);
 
   return (
     <>
@@ -60,6 +59,7 @@ export default function UserOptions({ setSelectedWord, tab }) {
             setFavorites={setFavorites}
             cachedWordPages={cachedWordPages}
             setcachedWordPages={setcachedWordPages}
+            setInfoDrawerOpen={setInfoDrawerOpen}
           />
         )}
 
@@ -70,6 +70,7 @@ export default function UserOptions({ setSelectedWord, tab }) {
             setSelectedWord={setSelectedWord}
             favorites={favorites}
             setFavorites={setFavorites}
+            setInfoDrawerOpen={setInfoDrawerOpen}
           />
         )}
 
@@ -80,6 +81,7 @@ export default function UserOptions({ setSelectedWord, tab }) {
             setSelectedWord={setSelectedWord}
             favorites={favorites}
             setFavorites={setFavorites}
+            setInfoDrawerOpen={setInfoDrawerOpen}
           />
         )}
       </WordListsStructure>
