@@ -27,14 +27,14 @@ const OptionButton = styled.div`
 
 export default function Favorites({
   favoritesPage,
-  setFavoritespage,
   favorites,
   setFavorites,
   setSelectedWord,
   setInfoDrawerOpen,
+  dataFavorites,
+  setPageFavorites,
+  setFavoritesPage,
 }) {
-  const navigate = useNavigate();
-
   let filterValues = () => {
     const propertyNames = Object.keys(favorites);
 
@@ -47,48 +47,34 @@ export default function Favorites({
 
   const [favoriteList, setFavoriteList] = useState(filterValues(favorites));
 
-  const [{ data, isLoading, isError }, changePage] = GetFavoritesList();
-
-  // useEffect(() => {
-  //   changePageFavorites(historyPage);
-  // }, [historyPage]);
-
-  useEffect(() => {
-    changePage(favoritesPage);
-  }, [favoritesPage]);
-
   const handleChange = (event, value) => {
-    setFavoritespage(value);
+    setFavoritesPage(value);
   };
 
-  if (isError) {
-    if (isError.auth === false) navigate("/login");
-    return <div>Something went wrong ...</div>;
-  }
-  if (isLoading) return <Loading />;
-  if (data)
-    return (
-      <div>
-        <WordListGrid>
-          {data.results !== undefined &&
-            data.results.map((item, index) => (
-              <Word
-                index={index}
-                item={item}
-                setSelectedWord={setSelectedWord}
-                favorites={favorites}
-                setFavorites={setFavorites}
-                setInfoDrawerOpen={setInfoDrawerOpen}
-              />
-            ))}
-        </WordListGrid>
-        <OptionButton>
+  return (
+    <div>
+      <WordListGrid>
+        {dataFavorites.results !== undefined &&
+          dataFavorites.results.map((item, index) => (
+            <Word
+              index={index}
+              item={item}
+              setSelectedWord={setSelectedWord}
+              favorites={favorites}
+              setFavorites={setFavorites}
+              setInfoDrawerOpen={setInfoDrawerOpen}
+            />
+          ))}
+      </WordListGrid>
+      <OptionButton>
+        {dataFavorites.totalPages !== 0 && (
           <Pagination
-            count={data.totalPages}
+            count={dataFavorites.totalPages}
             page={favoritesPage}
             onChange={handleChange}
           />
-        </OptionButton>
-      </div>
-    );
+        )}
+      </OptionButton>
+    </div>
+  );
 }

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import History from "./History";
 import Favorites from "./Favorites";
 import WordList from "./WordList";
 import styled from "styled-components";
 import Tab from "./Tab";
-
+import Loading from "../Loading/Loading";
+import { GetFavoritesList } from "../../Services/getFavorites";
+import { useNavigate } from "react-router-dom";
 const TabsStyle = styled.div`
   color: white;
 `;
@@ -26,6 +28,8 @@ export default function UserOptions({
   tab,
   setInfoDrawerOpen,
 }) {
+  const navigate = useNavigate();
+
   const [favorites, setFavorites] = useState({});
   const [cachedWordPages, setcachedWordPages] = useState({});
 
@@ -41,53 +45,81 @@ export default function UserOptions({
   //Page from history
   const [historyPage, setHistorypage] = useState(0);
   //page from favorites
-  const [favoritesPage, setFavoritespage] = useState(0);
+  const [favoritesPage, setFavoritesPage] = useState(0);
 
-  return (
-    <>
-      <TabsStyle>
-        <TabsBox>
-          <Tab isSelected={verifyTable(tab) === 0} content={tables[0]} />
-          <Tab isSelected={verifyTable(tab) === 1} content={tables[1]} />
-          <Tab isSelected={verifyTable(tab) === 2} content={tables[2]} />
-        </TabsBox>
-      </TabsStyle>
-      <WordListsStructure>
-        {verifyTable(tab) === 0 && (
-          <WordList
-            page={page}
-            setPage={setPage}
-            setSelectedWord={setSelectedWord}
-            favorites={favorites}
-            setFavorites={setFavorites}
-            cachedWordPages={cachedWordPages}
-            setcachedWordPages={setcachedWordPages}
-            setInfoDrawerOpen={setInfoDrawerOpen}
-          />
-        )}
+  const [
+    { dataFavorites, isLoadingFavorites, isErrorFavorites },
+    setPageFavorites,
+  ] = GetFavoritesList();
 
-        {verifyTable(tab) === 1 && (
-          <History
-            historyPage={historyPage}
-            setHistorypage={setHistorypage}
-            setSelectedWord={setSelectedWord}
-            favorites={favorites}
-            setFavorites={setFavorites}
-            setInfoDrawerOpen={setInfoDrawerOpen}
-          />
-        )}
+  useEffect(() => {
+    setPageFavorites(favoritesPage);
+  }, [favoritesPage]);
 
-        {verifyTable(tab) === 2 && (
-          <Favorites
-            favoritesPage={favoritesPage}
-            setFavoritespage={setFavoritespage}
-            setSelectedWord={setSelectedWord}
-            favorites={favorites}
-            setFavorites={setFavorites}
-            setInfoDrawerOpen={setInfoDrawerOpen}
-          />
-        )}
-      </WordListsStructure>
-    </>
-  );
+  useEffect(() => {}, []);
+
+  if (isErrorFavorites) {
+    if (isErrorFavorites.auth === false) navigate("/login");
+    return <div>Something went wrong ...</div>;
+  }
+  if (isLoadingFavorites) return <Loading />;
+  if (dataFavorites) {
+    let ref = favorites;
+    for (let i = 0; i < dataFavorites.results; i++) {
+      ref[dataFavorites.results[i]] = true;
+      setFavorites(ref);
+      console.log("Favorites", favorites);
+    }
+
+    return (
+      <>
+        {JSON.stringify(dataFavorites)}
+        <TabsStyle>
+          <TabsBox>
+            <Tab isSelected={verifyTable(tab) === 0} content={tables[0]} />
+            <Tab isSelected={verifyTable(tab) === 1} content={tables[1]} />
+            <Tab isSelected={verifyTable(tab) === 2} content={tables[2]} />
+          </TabsBox>
+        </TabsStyle>
+        <WordListsStructure>
+          {verifyTable(tab) === 0 && (
+            <WordList
+              page={page}
+              setPage={setPage}
+              setSelectedWord={setSelectedWord}
+              favorites={favorites}
+              setFavorites={setFavorites}
+              cachedWordPages={cachedWordPages}
+              setcachedWordPages={setcachedWordPages}
+              setInfoDrawerOpen={setInfoDrawerOpen}
+            />
+          )}
+
+          {verifyTable(tab) === 1 && (
+            <History
+              historyPage={historyPage}
+              setHistorypage={setHistorypage}
+              setSelectedWord={setSelectedWord}
+              favorites={favorites}
+              setFavorites={setFavorites}
+              setInfoDrawerOpen={setInfoDrawerOpen}
+            />
+          )}
+
+          {verifyTable(tab) === 2 && (
+            <Favorites
+              favoritesPage={favoritesPage}
+              setFavoritesPage={setFavoritesPage}
+              setSelectedWord={setSelectedWord}
+              favorites={favorites}
+              setFavorites={setFavorites}
+              setInfoDrawerOpen={setInfoDrawerOpen}
+              dataFavorites={dataFavorites}
+              setPageFavorites={setPageFavorites}
+            />
+          )}
+        </WordListsStructure>
+      </>
+    );
+  }
 }

@@ -54,18 +54,15 @@ let filterValues = (values) => {
 
 export default function Word({
   item,
-  index,
   setSelectedWord,
-  favorites,
-  setFavorites,
-  setFavoriteList,
   setInfoDrawerOpen,
+  isFavorite
 }) {
   const changeWordFavoritedStatus = async (word, status) => {
-    let ref = favorites;
-    ref[word] = status;
-    setFavorites(ref);
-    setIsFavorited(status);
+    // let ref = favorites;
+    // ref[word] = status;
+    // setFavorites(ref);
+    // setIsFavorited(status);
 
     if (status) {
       favoriteWord(word);
@@ -73,18 +70,18 @@ export default function Word({
       await unfavoriteWord(word);
     }
 
-    setFavoriteList(filterValues(ref));
+    // setFavoriteList(filterValues(ref));
   };
 
-  const elementIsFavorited = (word) => {
-    if (favorites[word] !== undefined) {
-      if (favorites[word]) return true;
-      return false;
-    }
-    return false;
-  };
+  // const elementIsFavorited = (word) => {
+  //   if (favorites[word] !== undefined) {
+  //     if (favorites[word]) return true;
+  //     return false;
+  //   }
+  //   return false;
+  // };
 
-  const [isFavorited, setIsFavorited] = useState(elementIsFavorited(item));
+  // const [isFavorited, setIsFavorited] = useState(elementIsFavorited(item));
 
   return (
     <>
@@ -98,7 +95,7 @@ export default function Word({
           {item}
         </FirstButton>
         <SecoundButton>
-          {isFavorited ? (
+          {isFavorite ? (
             <div
               onClick={() => {
                 changeWordFavoritedStatus(item, false);

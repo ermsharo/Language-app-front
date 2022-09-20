@@ -30,8 +30,6 @@ export default function WordList({
   setPage,
   favorites,
   setFavorites,
-  cachedWordPages,
-  setcachedWordPages,
   setInfoDrawerOpen,
 }) {
   const navigate = useNavigate();
@@ -41,8 +39,7 @@ export default function WordList({
   };
 
   const [{ data, isLoading, isError }, changePage] = GetWordList(
-    cachedWordPages,
-    setcachedWordPages
+
   );
 
   useEffect(() => {
@@ -58,26 +55,28 @@ export default function WordList({
   if (data) {
     return (
       <div>
+        {JSON.stringify(data)}
         <WordListGrid>
           {data.results !== undefined &&
             data.results.map((item, index) => (
               <Word
-                index={index}
-                item={item}
+                item={item.word}
                 setSelectedWord={setSelectedWord}
                 favorites={favorites}
                 setFavorites={setFavorites}
                 setInfoDrawerOpen={setInfoDrawerOpen}
+                isFavorite = {item.isFavorite}
               />
             ))}
         </WordListGrid>
-        <OptionButton>
+        {(data.totalPages !== 0 ) && (<OptionButton>
           <Pagination
             count={data.totalPages}
             page={page}
             onChange={handleChange}
           />
-        </OptionButton>
+        </OptionButton>)}
+
       </div>
     );
   }

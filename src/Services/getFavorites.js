@@ -2,19 +2,19 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getToken } from "../Services/getLoginStatus";
 
-export const GetFavoritesList = () => {
-  const [data, setData] = useState(null);
-  const [page, setPage] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+export const GetFavoritesList = (favorites, setFavorites) => {
+  const [dataFavorites, setDataFavorites] = useState(null);
+  const [pageFavorites, setPageFavorites] = useState(0);
+  const [isLoadingFavorites, setIsLoadingFavorites] = useState(false);
+  const [isErrorFavorites, setIsErrorFavorites] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsError(false);
-      setIsLoading(true);
+      setIsErrorFavorites(false);
+      setIsLoadingFavorites(true);
       try {
         const result = await axios(
-          `http://localhost:5000/user/me/favorites?&limit=15&page=${page}`,
+          `http://localhost:5000/user/me/favorites?&limit=15&page=${pageFavorites}`,
           {
             headers: {
               "x-access-token": getToken(),
@@ -22,17 +22,27 @@ export const GetFavoritesList = () => {
           }
         );
 
-        setData(result.data);
+        setDataFavorites(result.data);
+        if (result.data) {
+          let ref = favorites;
+          for (let i = 0; i < result.data.results; i++) {
+            ref[result.data.results[i]] = true;
+            setFavorites(ref);
+            console.log("Favorites", favorites);
+          }
+        }
       } catch (error) {
-        setIsError(error.response.data);
+        setIsErrorFavorites(error.response.data);
       }
 
-      setIsLoading(false);
+      setIsLoadingFavorites(false);
     };
 
     fetchData();
-    console.log("data ->", data);
-  }, [page]);
+  }, [pageFavorites]);
 
-  return [{ data, isLoading, isError }, setPage];
+  return [
+    { dataFavorites, isLoadingFavorites, isErrorFavorites },
+    setPageFavorites,
+  ];
 };

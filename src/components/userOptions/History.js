@@ -65,13 +65,14 @@ export default function History({
               />
             ))}
         </WordListGrid>
-        <OptionButton>
+        {(data.totalPages !== 0) && (<OptionButton>
           <Pagination
             count={data.totalPages}
             page={historyPage}
             onChange={handleChange}
           />
-        </OptionButton>
+        </OptionButton>)}
+
       </div>
     );
 }
