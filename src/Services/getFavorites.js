@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { getToken } from "../Services/getLoginStatus";
+import {getUserInfo} from "../Services/getLoginStatus";
 
 export const GetFavoritesList = (favorites, setFavorites) => {
   const [dataFavorites, setDataFavorites] = useState(null);
@@ -19,6 +20,9 @@ export const GetFavoritesList = (favorites, setFavorites) => {
             headers: {
               "x-access-token": getToken(),
             },
+            data: {
+              userId: getUserInfo().id,
+            }
           }
         );
 

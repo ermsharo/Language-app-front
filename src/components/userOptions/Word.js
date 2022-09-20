@@ -61,9 +61,9 @@ export default function Word({
   const changeWordFavoritedStatus = async (word, status) => {
 
     if (status) {
-      favoriteWord(word);
+       favoriteWord(word);
     } else {
-      await unfavoriteWord(word);
+       unfavoriteWord(word);
     }
     window.location.reload(true);
 
