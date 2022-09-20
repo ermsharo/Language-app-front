@@ -17,7 +17,6 @@ const MeaningTitle = styled.div`
 `;
 
 export default function ShortInfoDisplay({ shortInfo, title }) {
-
   if (!shortInfo || shortInfo.length === 0) return <></>;
   return (
     <div>
