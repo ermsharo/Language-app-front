@@ -56,7 +56,7 @@ export default function UserOptions({
     setPageFavorites(favoritesPage);
   }, [favoritesPage]);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   if (isErrorFavorites) {
     if (isErrorFavorites.auth === false) navigate("/login");
@@ -73,7 +73,6 @@ export default function UserOptions({
 
     return (
       <>
-        {JSON.stringify(dataFavorites)}
         <TabsStyle>
           <TabsBox>
             <Tab isSelected={verifyTable(tab) === 0} content={tables[0]} />

@@ -21,7 +21,7 @@ export const GetWordList = () => {
           },
         });
         setData(result.data);
-  
+
       } catch (error) {
         setIsError(error.response.data);
       }
@@ -29,8 +29,8 @@ export const GetWordList = () => {
       setIsLoading(false);
     };
 
-      fetchData();
-  
+    fetchData();
+
   }, [page]);
 
   return [{ data, isLoading, isError }, setPage];
