@@ -30,11 +30,9 @@ export default function Favorites({
   let filterValues = () => {
     const propertyNames = Object.keys(favorites);
 
-    console.log(propertyNames);
-
     let valideValues = [];
     for (let i = 0; i < propertyNames.length; i++) {
-      console.log(propertyNames[i]);
+
       if (favorites[propertyNames[i]]) valideValues.push(propertyNames[i]);
     }
     return valideValues;
@@ -43,7 +41,7 @@ export default function Favorites({
   const [favoriteList, setFavoriteList] = useState(filterValues(favorites));
 
   useEffect(() => {
-    console.log("Favorites updates");
+
   }, [favoriteList, setFavoriteList]);
 
   return (

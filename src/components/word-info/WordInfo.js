@@ -116,7 +116,7 @@ export default function WordInfo({
           {wordObj?.audio && (
             <ReactAudioPlayer
               src={wordObj?.audio}
-              autoPlay
+              autoPlay={false}
               controls
               style={{ width: "100%" }}
             />

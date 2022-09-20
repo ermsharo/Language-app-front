@@ -31,9 +31,7 @@ export const GetWordInfo = (selectedWord, wordsRequests, setWordsRequests) => {
 
       setIsLoading(false);
     };
-    console.log("words requests ->", wordsRequests, wordsRequests[url]);
     if (wordsRequests[url] !== undefined) {
-      console.log("Já temos");
       setData(wordsRequests[url]);
       setIsError(false);
       setIsLoading(false);

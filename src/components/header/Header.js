@@ -22,9 +22,6 @@ const LogoBox = styled.div`
 
 const Header = () => {
   const navigate = useNavigate();
-  console.log("current host 👉️", window.location.host);
-  console.log("current URL 👉️", window.location.href);
-  console.log("current Pathname 👉️", window.location.pathname);
   return (
     <header>
       <HeaderBox>

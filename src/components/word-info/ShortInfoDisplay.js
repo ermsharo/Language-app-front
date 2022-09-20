@@ -17,12 +17,10 @@ const MeaningTitle = styled.div`
 `;
 
 export default function ShortInfoDisplay({ shortInfo, title }) {
-  //console.log("Short info", shortInfo);
 
   if (!shortInfo || shortInfo.length === 0) return <></>;
   return (
     <div>
-      {" "}
       <MeaningTitle>{title}</MeaningTitle>{" "}
       <DisplayInfo>
         {shortInfo.map((item, index) => (

@@ -60,7 +60,6 @@ export default function Board() {
 
     if (0 < windowSize.width && windowSize.width < 992) {
       setIsMobile(true);
-      console.log("resize", windowSize.width, isMobile);
     } else {
       setIsMobile(false);
     }

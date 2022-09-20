@@ -45,11 +45,9 @@ const SecoundButton = styled.button`
 let filterValues = (values) => {
   const propertyNames = Object.keys(values);
 
-  console.log(propertyNames);
 
   let valideValues = [];
   for (let i = 0; i < propertyNames.length; i++) {
-    console.log(propertyNames[i]);
     if (values[propertyNames[i]]) valideValues.push(propertyNames[i]);
   }
   return valideValues;
@@ -71,9 +69,6 @@ export default function Word({
     setIsFavorited(status);
 
     if (status) {
-      //console.log("Add to favorites word", word);
-      //let response = await favoriteWord(word);
-      /// console.log("Add to favorites word", response);
     } else {
       await unfavoriteWord(word);
     }
