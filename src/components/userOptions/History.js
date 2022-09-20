@@ -56,12 +56,10 @@ export default function History({
           {data.results !== undefined &&
             data.results.map((item, index) => (
               <Word
-                index={index}
-                item={item}
-                setSelectedWord={setSelectedWord}
-                favorites={favorites}
-                setFavorites={setFavorites}
-                setInfoDrawerOpen={setInfoDrawerOpen}
+              item={item.word}
+              setSelectedWord={setSelectedWord}
+              setInfoDrawerOpen={setInfoDrawerOpen}
+              isFavorite={item.isFavorite}
               />
             ))}
         </WordListGrid>
