@@ -47,32 +47,31 @@ export default function Favorites({
 
   const [favoriteList, setFavoriteList] = useState(filterValues(favorites));
 
-  const [
-    { dataFavorites, isLoadingFavorites, isErrorFavorites },
-    changePageFavorites,
-  ] = GetFavoritesList();
-
-  useEffect(() => {}, [favoriteList, setFavoriteList]);
+  const [{ data, isLoading, isError }, changePage] = GetFavoritesList();
 
   // useEffect(() => {
   //   changePageFavorites(historyPage);
   // }, [historyPage]);
 
+  useEffect(() => {
+    changePage(favoritesPage);
+  }, [favoritesPage]);
+
   const handleChange = (event, value) => {
     setFavoritespage(value);
   };
 
-  if (isErrorFavorites) {
-    if (isErrorFavorites.auth === false) navigate("/login");
+  if (isError) {
+    if (isError.auth === false) navigate("/login");
     return <div>Something went wrong ...</div>;
   }
-  if (isLoadingFavorites) return <Loading />;
-  if (dataFavorites)
+  if (isLoading) return <Loading />;
+  if (data)
     return (
       <div>
         <WordListGrid>
-          {dataFavorites.results !== undefined &&
-            dataFavorites.results.map((item, index) => (
+          {data.results !== undefined &&
+            data.results.map((item, index) => (
               <Word
                 index={index}
                 item={item}
@@ -85,7 +84,7 @@ export default function Favorites({
         </WordListGrid>
         <OptionButton>
           <Pagination
-            count={dataFavorites.totalPages}
+            count={data.totalPages}
             page={favoritesPage}
             onChange={handleChange}
           />

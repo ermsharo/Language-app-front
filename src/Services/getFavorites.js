@@ -31,6 +31,7 @@ export const GetFavoritesList = () => {
     };
 
     fetchData();
+    console.log("data ->", data);
   }, [page]);
 
   return [{ data, isLoading, isError }, setPage];
