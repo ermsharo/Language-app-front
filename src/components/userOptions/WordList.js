@@ -44,7 +44,7 @@ export default function WordList({
 
   useEffect(() => {
     changePage(page);
-  }, [changePage, page, favorites]);
+  }, [changePage, page]);
 
   if (isError) {
     if (isError.auth === false) navigate("/login");
@@ -55,21 +55,19 @@ export default function WordList({
   if (data) {
     return (
       <div>
-        {JSON.stringify(data)}
         <WordListGrid>
           {data.results !== undefined &&
             data.results.map((item, index) => (
               <Word
                 item={item.word}
                 setSelectedWord={setSelectedWord}
-                favorites={favorites}
-                setFavorites={setFavorites}
                 setInfoDrawerOpen={setInfoDrawerOpen}
-                isFavorite = {item.isFavorite}
+                isFavorite={item.isFavorite}
+
               />
             ))}
         </WordListGrid>
-        {(data.totalPages !== 0 ) && (<OptionButton>
+        {(data.totalPages !== 0) && (<OptionButton>
           <Pagination
             count={data.totalPages}
             page={page}

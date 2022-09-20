@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import Word from "./Word";
-import React, { useEffect, useState } from "react";
-import { GetFavoritesList } from "../../Services/getFavorites";
-import { useNavigate } from "react-router-dom";
-import Loading from "../Loading/Loading";
+import React from "react";
 import Pagination from "@mui/material/Pagination";
 
 const WordListGrid = styled.div`
@@ -27,25 +24,13 @@ const OptionButton = styled.div`
 
 export default function Favorites({
   favoritesPage,
-  favorites,
-  setFavorites,
   setSelectedWord,
   setInfoDrawerOpen,
   dataFavorites,
-  setPageFavorites,
   setFavoritesPage,
 }) {
-  let filterValues = () => {
-    const propertyNames = Object.keys(favorites);
 
-    let valideValues = [];
-    for (let i = 0; i < propertyNames.length; i++) {
-      if (favorites[propertyNames[i]]) valideValues.push(propertyNames[i]);
-    }
-    return valideValues;
-  };
 
-  const [favoriteList, setFavoriteList] = useState(filterValues(favorites));
 
   const handleChange = (event, value) => {
     setFavoritesPage(value);
@@ -55,14 +40,12 @@ export default function Favorites({
     <div>
       <WordListGrid>
         {dataFavorites.results !== undefined &&
-          dataFavorites.results.map((item, index) => (
+          dataFavorites.results.map((item) => (
             <Word
-              index={index}
-              item={item}
+              item={item.word}
               setSelectedWord={setSelectedWord}
-              favorites={favorites}
-              setFavorites={setFavorites}
               setInfoDrawerOpen={setInfoDrawerOpen}
+              isFavorite={item.isFavorite}
             />
           ))}
       </WordListGrid>

@@ -59,29 +59,16 @@ export default function Word({
   isFavorite
 }) {
   const changeWordFavoritedStatus = async (word, status) => {
-    // let ref = favorites;
-    // ref[word] = status;
-    // setFavorites(ref);
-    // setIsFavorited(status);
 
     if (status) {
       favoriteWord(word);
     } else {
       await unfavoriteWord(word);
     }
+    window.location.reload(true);
 
-    // setFavoriteList(filterValues(ref));
   };
 
-  // const elementIsFavorited = (word) => {
-  //   if (favorites[word] !== undefined) {
-  //     if (favorites[word]) return true;
-  //     return false;
-  //   }
-  //   return false;
-  // };
-
-  // const [isFavorited, setIsFavorited] = useState(elementIsFavorited(item));
 
   return (
     <>
