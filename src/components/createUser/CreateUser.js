@@ -16,11 +16,16 @@ const BoardBox = styled.div`
 
 const FormBox = styled.div`
   padding-top: 32px;
-  grid-column: 2/6;
+
+  grid-column: 2/8;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: 16px;
+
+  @media (min-width: 992px) {
+    grid-column: 3/7;
+  }
 
   input {
     font-family: "Varela Round", sans-serif;

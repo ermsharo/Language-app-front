@@ -63,7 +63,7 @@ export default function WordInfo({
 
   useEffect(() => {
     doFetch(selectedWord);
-  }, [selectedWord]);
+  }, [doFetch, selectedWord]);
 
   if (isError) {
     return (
@@ -72,6 +72,7 @@ export default function WordInfo({
           status="word dont find"
           success={false}
           display="word dont find"
+          showThumbs={false}
         />
       </>
     );
