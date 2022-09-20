@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import Feedback from "./../Feedback/FeedBack";
 import axios from "axios";
 import { HeaderColor } from "./../../Styles/StyleFunctions";
+import { useNavigate } from "react-router-dom";
 
 const BoardBox = styled.div`
   padding-top: 32px;
@@ -57,12 +58,14 @@ export default function CreateUser() {
     password: "",
     passwordCheck: "",
   });
-
-  const [requestAwnser, setRequestAwnser] = useState(null);
+  const [requestErrorAwnser, setRequestErrorAwnser] = useState(false);
+  const [requestAwnser, setRequestAwnser] = useState(false);
   const [validationErrors, setValidationErrors] = useState({
     isFormValid: true,
     errorArray: [],
   });
+
+  const navigate = useNavigate();
 
   function handleChange(evt) {
     const value = evt.target.value;
@@ -120,9 +123,10 @@ export default function CreateUser() {
         })
         .then((response) => {
           setRequestAwnser(response.data);
+          navigate("/")
         })
         .catch((error) => {
-          console.log(error.toJSON());
+          setRequestErrorAwnser(error.response.data);
         });
     }
   };
@@ -170,14 +174,19 @@ export default function CreateUser() {
               onChange={handleChange}
             />
 
-            {!validationErrors.isFormValid && (
+            {validationErrors.errorArray.length != 0 && (
               <Feedback
                 status={validationErrors.errorArray[0]}
                 success={false}
-                display={true}
+                display={!validationErrors.isFormValid}
               />
             )}
 
+            <Feedback
+              status={requestErrorAwnser}
+              success={false}
+              display={requestErrorAwnser}
+            />
             <Button
               onClick={() => {
                 createUser();

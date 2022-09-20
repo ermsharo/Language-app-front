@@ -97,6 +97,7 @@ export default function SingIn() {
         navigate("/");
       })
       .catch((error) => {
+        console.log(error.response.data)
         setRequestErrorAwnser(error.response.data);
       });
   };
@@ -105,7 +106,7 @@ export default function SingIn() {
     <>
       <BoardBox>
         <LogoBox>
-          <Logo color="#00008b" size="6vw" />
+          <Logo color= {HeaderColor} size="6vw" />
         </LogoBox>
         <Grid>
           <LoginBox>
