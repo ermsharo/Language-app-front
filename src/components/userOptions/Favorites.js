@@ -31,13 +31,20 @@ export default function Favorites({
 
   setFavoritesPage,
   refreshComponents,
-  refreshComp
+  refreshComp,
 }) {
-
+  const TabSecTitle = styled.div`
+    text-align: left;
+    font-size: 32px;
+    text-transform: capitalize;
+    padding-bottom: 32px;
+    font-weight: 400;
+  `;
 
   const navigate = useNavigate();
 
-  const [{ data, isLoading, isError }, changePage, setRefresh] = GetFavoritesList();
+  const [{ data, isLoading, isError }, changePage, setRefresh] =
+    GetFavoritesList();
 
   useEffect(() => {
     changePage(favoritesPage);
@@ -56,6 +63,7 @@ export default function Favorites({
   if (data)
     return (
       <div>
+        <TabSecTitle>Favorites</TabSecTitle>
         <WordListGrid>
           {data.results !== undefined &&
             data.results.map((item, index) => (
@@ -69,15 +77,15 @@ export default function Favorites({
               />
             ))}
         </WordListGrid>
-        {(data.totalPages !== 0) && (<OptionButton>
-          <Pagination
-            count={data.totalPages}
-            page={favoritesPage}
-            onChange={handleChange}
-          />
-        </OptionButton>)}
-
+        {data.totalPages !== 0 && (
+          <OptionButton>
+            <Pagination
+              count={data.totalPages}
+              page={favoritesPage}
+              onChange={handleChange}
+            />
+          </OptionButton>
+        )}
       </div>
     );
-
 }

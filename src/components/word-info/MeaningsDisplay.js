@@ -84,6 +84,8 @@ const ButtonDisable = styled.div`
       opacity: 0.9;
     }
   }
+  display: flex;
+  justify-content: space-between;
 `;
 
 const MeaningDisplay = styled.div`
@@ -200,7 +202,7 @@ export default function Meanings({ Meanings }) {
         />
       </MeaningDisplay>
 
-      {Meanings.length >= 1 && (
+      {Meanings.length > 1 && (
         <ButtonDisplay>
           {previousExist() ? (
             <ButtonEnable>

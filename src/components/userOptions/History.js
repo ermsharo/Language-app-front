@@ -28,6 +28,8 @@ export default function History({
   historyPage,
   setHistorypage,
   setSelectedWord,
+  favorites,
+  setFavorites,
   setInfoDrawerOpen,
   refreshComponents,
   refreshComp,
@@ -39,7 +41,7 @@ export default function History({
   useEffect(() => {
     changePage(historyPage);
     setRefresh(refreshComp);
-  }, [historyPage, changePage, refreshComp, setRefresh]);
+  }, [historyPage,changePage, refreshComp]);
 
   const handleChange = (event, value) => {
     setHistorypage(value);

@@ -24,6 +24,14 @@ const OptionButton = styled.div`
   justify-content: center;
 `;
 
+const TabSecTitle = styled.div`
+  text-align: left;
+  font-size: 32px;
+  text-transform: capitalize;
+  padding-bottom: 32px;
+  font-weight: 400;
+`;
+
 export default function WordList({
   setSelectedWord,
   page,
@@ -32,7 +40,7 @@ export default function WordList({
   setFavorites,
   setInfoDrawerOpen,
   refreshComponents,
-  refreshComp
+  refreshComp,
 }) {
   const navigate = useNavigate();
 
@@ -40,12 +48,10 @@ export default function WordList({
     setPage(value);
   };
 
-  const [{ data, isLoading, isError }, changePage, setRefresh] = GetWordList(
-
-  );
+  const [{ data, isLoading, isError }, changePage, setRefresh] = GetWordList();
 
   useEffect(() => {
-    console.log("update word list")
+    console.log("update word list");
     changePage(page);
     setRefresh(refreshComp);
   }, [changePage, page, refreshComp]);
@@ -59,7 +65,7 @@ export default function WordList({
   if (data) {
     return (
       <div>
-        <button onClick={() => { refreshComponents() }}>update all</button>
+        <TabSecTitle>words</TabSecTitle>
         <WordListGrid>
           {data.results !== undefined &&
             data.results.map((item, index) => (
@@ -70,18 +76,18 @@ export default function WordList({
                 isFavorite={item.isFavorite}
                 refreshComponents={refreshComponents}
                 refreshComp={refreshComp}
-
               />
             ))}
         </WordListGrid>
-        {(data.totalPages !== 0) && (<OptionButton>
-          <Pagination
-            count={data.totalPages}
-            page={page}
-            onChange={handleChange}
-          />
-        </OptionButton>)}
-
+        {data.totalPages !== 0 && (
+          <OptionButton>
+            <Pagination
+              count={data.totalPages}
+              page={page}
+              onChange={handleChange}
+            />
+          </OptionButton>
+        )}
       </div>
     );
   }
