@@ -31,14 +31,17 @@ export default function History({
   favorites,
   setFavorites,
   setInfoDrawerOpen,
+  refreshComponents,
+  refreshComp,
 }) {
   const navigate = useNavigate();
 
-  const [{ data, isLoading, isError }, changePage] = GetHistoryList();
+  const [{ data, isLoading, isError }, changePage, setRefresh] = GetHistoryList();
 
   useEffect(() => {
     changePage(historyPage);
-  }, [historyPage]);
+    setRefresh(refreshComp);
+  }, [historyPage,changePage, refreshComp]);
 
   const handleChange = (event, value) => {
     setHistorypage(value);
@@ -60,6 +63,8 @@ export default function History({
               setSelectedWord={setSelectedWord}
               setInfoDrawerOpen={setInfoDrawerOpen}
               isFavorite={item.isFavorite}
+              refreshComponents={refreshComponents}
+              refreshComp={refreshComp}
               />
             ))}
         </WordListGrid>

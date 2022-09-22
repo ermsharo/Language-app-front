@@ -125,6 +125,7 @@ export default function UserOptions({
               setFavorites={setFavorites}
               setInfoDrawerOpen={setInfoDrawerOpen}
               refreshComponents={refreshComponents}
+              refreshComp={refreshComp}
             />
           )}
 
