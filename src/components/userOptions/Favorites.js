@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import Word from "./Word";
-import React from "react";
+import { useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
-
+import { useNavigate } from "react-router-dom";
+import { GetFavoritesList } from "../../Services/requestFavorites";
+import Loading from "../Loading/Loading";
 const WordListGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -26,38 +28,56 @@ export default function Favorites({
   favoritesPage,
   setSelectedWord,
   setInfoDrawerOpen,
-  dataFavorites,
+
   setFavoritesPage,
+  refreshComponents,
+  refreshComp
 }) {
 
 
+  const navigate = useNavigate();
+
+  const [{ data, isLoading, isError }, changePage, setRefresh] = GetFavoritesList();
+
+  useEffect(() => {
+    changePage(favoritesPage);
+    setRefresh(refreshComp);
+  }, [favoritesPage, changePage, refreshComp, setRefresh]);
 
   const handleChange = (event, value) => {
     setFavoritesPage(value);
   };
 
-  return (
-    <div>
-      <WordListGrid>
-        {dataFavorites.results !== undefined &&
-          dataFavorites.results.map((item) => (
-            <Word
-              item={item.word}
-              setSelectedWord={setSelectedWord}
-              setInfoDrawerOpen={setInfoDrawerOpen}
-              isFavorite={item.isFavorite}
-            />
-          ))}
-      </WordListGrid>
-      <OptionButton>
-        {dataFavorites.totalPages !== 0 && (
+  if (isError) {
+    if (isError.auth === false) navigate("/login");
+    return <div>Something went wrong ...</div>;
+  }
+  if (isLoading) return <Loading />;
+  if (data)
+    return (
+      <div>
+        <WordListGrid>
+          {data.results !== undefined &&
+            data.results.map((item, index) => (
+              <Word
+                item={item.word}
+                setSelectedWord={setSelectedWord}
+                setInfoDrawerOpen={setInfoDrawerOpen}
+                isFavorite={item.isFavorite}
+                refreshComponents={refreshComponents}
+                refreshComp={refreshComp}
+              />
+            ))}
+        </WordListGrid>
+        {(data.totalPages !== 0) && (<OptionButton>
           <Pagination
-            count={dataFavorites.totalPages}
+            count={data.totalPages}
             page={favoritesPage}
             onChange={handleChange}
           />
-        )}
-      </OptionButton>
-    </div>
-  );
+        </OptionButton>)}
+
+      </div>
+    );
+
 }
