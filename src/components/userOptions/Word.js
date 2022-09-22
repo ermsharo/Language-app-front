@@ -56,7 +56,8 @@ export default function Word({
   item,
   setSelectedWord,
   setInfoDrawerOpen,
-  isFavorite
+  isFavorite,
+  refreshComponents
 }) {
   const changeWordFavoritedStatus = async (word, status) => {
 
@@ -65,7 +66,8 @@ export default function Word({
     } else {
        unfavoriteWord(word);
     }
-    window.location.reload(true);
+    refreshComponents();
+    //window.location.reload(true);
 
   };
 

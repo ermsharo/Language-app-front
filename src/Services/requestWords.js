@@ -4,6 +4,7 @@ import { getToken } from "../Services/getLoginStatus";
 
 export const GetWordList = () => {
   const [data, setData] = useState(null);
+  const [refresh, setRefresh] = useState(false);
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -31,7 +32,7 @@ export const GetWordList = () => {
 
     fetchData();
 
-  }, [page]);
+  }, [page ,refresh]);
 
-  return [{ data, isLoading, isError }, setPage];
+  return [{ data, isLoading, isError }, setPage ,setRefresh];
 };

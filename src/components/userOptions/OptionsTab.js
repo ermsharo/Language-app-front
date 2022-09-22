@@ -18,6 +18,14 @@ const TabsBox = styled.div`
   gap: 4px;
 `;
 
+
+const Rendered = styled.div`
+border: 2px solid red;
+color: red;
+width :100px ;
+`;
+
+
 const WordListsStructure = styled.div`
   background-color: #fbfbf8;
   padding: 32px;
@@ -47,16 +55,26 @@ export default function UserOptions({
   //page from favorites
   const [favoritesPage, setFavoritesPage] = useState(0);
 
+  const [refreshComp, setRefreshComp] = useState(false);
+
+
+
+
   const [
     { dataFavorites, isLoadingFavorites, isErrorFavorites },
     setPageFavorites,
   ] = GetFavoritesList();
 
   useEffect(() => {
+    console.log("update our changes")
     setPageFavorites(favoritesPage);
-  }, [favoritesPage]);
+  }, [favoritesPage, page, historyPage, refreshComp]);
 
   useEffect(() => { }, []);
+
+  const refreshComponents = () => {
+    setRefreshComp(!refreshComp);
+  }
 
   if (isErrorFavorites) {
     if (isErrorFavorites.auth === false) navigate("/login");
@@ -73,6 +91,7 @@ export default function UserOptions({
 
     return (
       <>
+
         <TabsStyle>
           <TabsBox>
             <Tab isSelected={verifyTable(tab) === 0} content={tables[0]} />
@@ -81,6 +100,7 @@ export default function UserOptions({
           </TabsBox>
         </TabsStyle>
         <WordListsStructure>
+
           {verifyTable(tab) === 0 && (
             <WordList
               page={page}
@@ -91,6 +111,8 @@ export default function UserOptions({
               cachedWordPages={cachedWordPages}
               setcachedWordPages={setcachedWordPages}
               setInfoDrawerOpen={setInfoDrawerOpen}
+              refreshComponents={refreshComponents}
+              refreshComp={refreshComp}
             />
           )}
 
@@ -102,6 +124,7 @@ export default function UserOptions({
               favorites={favorites}
               setFavorites={setFavorites}
               setInfoDrawerOpen={setInfoDrawerOpen}
+              refreshComponents={refreshComponents}
             />
           )}
 
@@ -115,6 +138,7 @@ export default function UserOptions({
               setInfoDrawerOpen={setInfoDrawerOpen}
               dataFavorites={dataFavorites}
               setPageFavorites={setPageFavorites}
+              refreshComponents={refreshComponents}
             />
           )}
         </WordListsStructure>

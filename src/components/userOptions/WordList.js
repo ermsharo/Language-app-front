@@ -31,6 +31,8 @@ export default function WordList({
   favorites,
   setFavorites,
   setInfoDrawerOpen,
+  refreshComponents,
+  refreshComp
 }) {
   const navigate = useNavigate();
 
@@ -38,13 +40,15 @@ export default function WordList({
     setPage(value);
   };
 
-  const [{ data, isLoading, isError }, changePage] = GetWordList(
+  const [{ data, isLoading, isError }, changePage, setRefresh] = GetWordList(
 
   );
 
   useEffect(() => {
+    console.log("update word list")
     changePage(page);
-  }, [changePage, page]);
+    setRefresh(refreshComp);
+  }, [changePage, page, refreshComp]);
 
   if (isError) {
     if (isError.auth === false) navigate("/login");
@@ -55,6 +59,7 @@ export default function WordList({
   if (data) {
     return (
       <div>
+        <button onClick={() => { refreshComponents() }}>update all</button>
         <WordListGrid>
           {data.results !== undefined &&
             data.results.map((item, index) => (
@@ -63,6 +68,8 @@ export default function WordList({
                 setSelectedWord={setSelectedWord}
                 setInfoDrawerOpen={setInfoDrawerOpen}
                 isFavorite={item.isFavorite}
+                refreshComponents={refreshComponents}
+                refreshComp={refreshComp}
 
               />
             ))}
