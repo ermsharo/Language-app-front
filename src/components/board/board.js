@@ -5,7 +5,7 @@ import OptionsTabs from "./../userOptions/OptionsTab";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import WordInfoDrawer from "./WordInfoDrawer";
-import { GetFavoritesList } from "../../Services/getFavorites";
+
 
 const WordInfoBox = styled.div`
   display: none;
