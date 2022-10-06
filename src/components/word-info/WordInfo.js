@@ -17,7 +17,6 @@ const WordDisplayBox = styled.div`
   background-color: ${HeaderColor};
   padding: 16px;
   color: ${LightFontColor};
-  border-radius: 10px;
 `;
 
 const WordDisplay = styled.div`
@@ -89,7 +88,7 @@ export default function WordInfo({
       for (let i = 0; i < objToKeys.length; i++) {
         if (obj[objToKeys[i]]) {
           for (let j = 0; j < ourKeys.length; j++) {
-            if (objToKeys[i] == ourKeys[j]) {
+            if (objToKeys[i] === ourKeys[j]) {
               wordObj[objToKeys[i]] = obj[objToKeys[i]];
             }
           }

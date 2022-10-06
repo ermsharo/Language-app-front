@@ -24,6 +24,15 @@ const OptionButton = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+const TabSecTitle = styled.div`
+  text-align: left;
+  font-size: 32px;
+  text-transform: capitalize;
+  padding-bottom: 32px;
+  font-weight: 400;
+`;
+
 export default function History({
   historyPage,
   setHistorypage,
@@ -36,12 +45,13 @@ export default function History({
 }) {
   const navigate = useNavigate();
 
-  const [{ data, isLoading, isError }, changePage, setRefresh] = GetHistoryList();
+  const [{ data, isLoading, isError }, changePage, setRefresh] =
+    GetHistoryList();
 
   useEffect(() => {
     changePage(historyPage);
     setRefresh(refreshComp);
-  }, [historyPage,changePage, refreshComp]);
+  }, [historyPage, changePage, refreshComp]);
 
   const handleChange = (event, value) => {
     setHistorypage(value);
@@ -55,27 +65,29 @@ export default function History({
   if (data)
     return (
       <div>
+        <TabSecTitle>History</TabSecTitle>
         <WordListGrid>
           {data.results !== undefined &&
             data.results.map((item, index) => (
               <Word
-              item={item.word}
-              setSelectedWord={setSelectedWord}
-              setInfoDrawerOpen={setInfoDrawerOpen}
-              isFavorite={item.isFavorite}
-              refreshComponents={refreshComponents}
-              refreshComp={refreshComp}
+                item={item.word}
+                setSelectedWord={setSelectedWord}
+                setInfoDrawerOpen={setInfoDrawerOpen}
+                isFavorite={item.isFavorite}
+                refreshComponents={refreshComponents}
+                refreshComp={refreshComp}
               />
             ))}
         </WordListGrid>
-        {(data.totalPages !== 0) && (<OptionButton>
-          <Pagination
-            count={data.totalPages}
-            page={historyPage}
-            onChange={handleChange}
-          />
-        </OptionButton>)}
-
+        {data.totalPages !== 0 && (
+          <OptionButton>
+            <Pagination
+              count={data.totalPages}
+              page={historyPage}
+              onChange={handleChange}
+            />
+          </OptionButton>
+        )}
       </div>
     );
 }

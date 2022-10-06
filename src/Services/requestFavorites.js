@@ -3,11 +3,11 @@ import axios from "axios";
 import { getToken } from "../Services/getLoginStatus";
 
 export const GetFavoritesList = (favorites, setFavorites) => {
-    const [data, setData] = useState(null);
-    const [page, setPage] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
-    const [refresh, setRefresh] = useState(false);
+  const [data, setData] = useState(null);
+  const [page, setPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +24,6 @@ export const GetFavoritesList = (favorites, setFavorites) => {
         );
 
         setData(result.data);
-
       } catch (error) {
         setIsError(error.response.data);
       }
@@ -33,7 +32,7 @@ export const GetFavoritesList = (favorites, setFavorites) => {
     };
 
     fetchData();
-  }, [page , refresh]);
+  }, [page, refresh]);
 
-  return [{ data, isLoading, isError }, setPage,setRefresh];
+  return [{ data, isLoading, isError }, setPage, setRefresh];
 };

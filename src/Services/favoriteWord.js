@@ -6,9 +6,15 @@ export const favoriteWord = async (word) => {
 
   let url = `http://localhost:5000/entries/en/${word}/favorite`;
   await axios
-    .post(url,{}, {headers: {
-      "x-access-token": getToken(),
-    }},)
+    .post(
+      url,
+      {},
+      {
+        headers: {
+          "x-access-token": getToken(),
+        },
+      }
+    )
     .then((response) => {})
     .catch((error) => {
       console.log(error.toJSON());
